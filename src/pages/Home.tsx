@@ -1,19 +1,21 @@
 // Images & Icons //
-import AskQuestionImage from '../assets/illustration.svg'
 import LetMeAskImage from '../assets/logo.svg'
 import GoogleIcon from '../assets/google-icon.svg'
-import { FiLogIn } from 'react-icons/fi'
+
+// Components //
+import { IlustrationAside } from '../components/IlustrationAside'
+import { Button } from '../components/Button'
 
 import '../styles/home.scss' // CSS //
 
 export function Home() {
     return (
         <div id='page-container'>
-            <aside>
-                <img src={AskQuestionImage} alt="Imagem de perguntas e respostas" />
-                <p>Toda pergunta tem uma resposta.</p>
-                <span>Aprenda e compartilhe conhecimento com outras pessoas</span>
-            </aside>
+
+            <IlustrationAside
+                title='Toda pergunta tem uma resposta.'
+                description='Aprenda e compartilhe conhecimento com outras pessoas'
+            />
 
             <main>
                 <div className='main-content'>
@@ -27,14 +29,12 @@ export function Home() {
                     <span className='custom-divider'>Ou entre em uma sala</span>
 
                     <form action="submit">
-                        <input 
+                        <input
                             type="text"
                             name='code-room'
-                            placeholder='Digite o código da sala ...'/>
-                        <button className='login-button'>
-                            <FiLogIn size='20'/>
-                            Entrar na sala
-                        </button>
+                            placeholder='Digite o código da sala ...' />
+
+                        <Button label='Entrar na sala' />
                     </form>
                 </div>
             </main>

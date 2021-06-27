@@ -5,41 +5,6 @@
 
     display: flex;
 
-    aside {
-        flex: 7;
-
-        background: #835afd;
-        color: #fff;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        padding-left: 5rem;
-        padding-bottom: 6rem;
-
-        img {
-            width: 20rem;
-            height: 25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        p {
-            font-weight: 700;
-            font-size: 2rem;
-            max-width: 65%;
-            margin-bottom: 1rem;
-            line-height: 42px;
-        }
-
-        span {
-            font-size: 1.5rem;
-            max-width: 70%;
-            font-weight: 400;
-            line-height: 32px;
-            opacity: 0.7;
-        }
-    }
-
     main {
         flex: 8;
 
@@ -128,30 +93,5 @@
         height: 1px;
         background-color: #a8a8b3;
         margin-left: 1rem;
-    }
-}
-
-.login-button {
-    background-color: #835afd;
-    color: #fff;
-    height: 3rem;
-    border-radius: 0.5rem;
-    margin-top: 1rem;
-
-    border: 0;
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    transition: filter 0.2s;
-
-    svg {
-        margin-right: 0.5rem;
-    }
-
-    &:hover {
-        filter: brightness(0.9);
     }
 }

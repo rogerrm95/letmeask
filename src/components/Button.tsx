@@ -10,7 +10,7 @@ interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
 
 export function Button({ label, hasAIcon = true, ...rest }: ButtonProps) {
     return (
-        <button name={label} {...rest}>
+        <button name={label} className='button-custom' {...rest}>
             {hasAIcon && <FiLogIn size='20' />}
             {label}
         </button>

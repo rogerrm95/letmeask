@@ -23,7 +23,7 @@ export function Home() {
 
                     <button className='google-button'>
                         <img src={GoogleIcon} alt="Logo da Google" />
-                        <span>Crie sua sala com o Google</span>
+                        Crie sua sala com o Google
                     </button>
 
                     <span className='custom-divider'>Ou entre em uma sala</span>

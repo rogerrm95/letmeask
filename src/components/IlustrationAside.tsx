@@ -1,6 +1,5 @@
-import AskQuestionImage from '../assets/illustration.svg'
-
-import '../styles/components/ilustrationAside.scss'
+import AskQuestionImage from '../assets/illustration.svg' // Image //
+import '../styles/components/ilustrationAside.scss' // CSS //
 
 type IlustrationAsideProps = {
     title: string,

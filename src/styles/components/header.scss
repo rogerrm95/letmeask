@@ -1,0 +1,47 @@
+.page-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1.5rem;
+    border-bottom: 1px solid #e2e2e2;
+
+    img {
+        max-height: 45px;
+    }
+
+    > div {
+        display: flex;
+        flex-direction: row;
+        justify-items: center;
+        align-content: center;
+
+        button {
+            background-color: #fff;
+            color: #835afd;
+            height: 3rem;
+            border-radius: 0.5rem;
+
+            border: 1px solid #835afd;
+            cursor: pointer;
+            overflow: hidden;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:last-child {
+                margin-left: 1rem;
+                padding: 0 12px;
+
+                transition: background-color 0.3s;
+
+                &:hover {
+                    background-color: #835afd;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}

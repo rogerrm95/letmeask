@@ -1,5 +1,9 @@
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
+// Pages //
 import { Home } from './pages/Home';
+import { CreateRoom } from './pages/CreateRoom';
+import { AdminRoom } from './pages/AdminRoom';
+import { Room } from './pages/Room';
 
 function App() {
   return (
@@ -7,6 +11,9 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path='/' component={Home} exact />
+          <Route path='/new-room' component={CreateRoom} />
+          <Route path='/admin/room' component={AdminRoom} />
+          <Route path='/room' component={Room} />
         </Switch>
       </BrowserRouter>
     </div>

@@ -1,9 +1,14 @@
+import { Switch, Route, BrowserRouter } from 'react-router-dom'
+import { Home } from './pages/Home';
+
 function App() {
   return (
     <div className="App">
-      <h1>
-        Let Me Ask - NLW#06
-      </h1>
+      <BrowserRouter>
+        <Switch>
+          <Route path='/' component={Home} exact />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }

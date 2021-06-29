@@ -1,8 +1,11 @@
 // Components //
 import { Header } from "../components/Header";
 import { NoQuestions } from "../components/NoQuestions";
+import { Questions } from "../components/Questions";
 
 import '../styles/room.scss'
+
+const questions = true
 
 export function AdminRoom() {
     return (
@@ -15,7 +18,9 @@ export function AdminRoom() {
                     <span>6 perguntas</span>
                 </div>
 
-                <NoQuestions/>
+                {
+                    questions ? (<ul><Questions /><Questions /></ul>) : <NoQuestions />
+                }
             </main>
         </div>
     )

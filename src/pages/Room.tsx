@@ -26,7 +26,9 @@ export function Room() {
                     <footer>
                         <span>Para enviar uma pergunta, <a href="/">faça seu login.</a></span>
 
-                        <Button label='Enviar pergunta' hasAIcon={false} />
+                        <Button>
+                            Entrar
+                        </Button>
                     </footer>
 
                     <NoQuestions />

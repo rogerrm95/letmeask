@@ -1,8 +1,12 @@
-// Componentes //
+import { Link } from 'react-router-dom'
+// Components //
 import { IlustrationAside } from '../components/IlustrationAside'
 import { Button } from '../components/Button'
 
-import LetMeAskImage from '../assets/logo.svg' // Icon //
+// Icon & Image //
+import { FiLogOut } from 'react-icons/fi'
+import LetMeAskImage from '../assets/logo.svg'
+
 import '../styles/home.scss' // CSS //
 
 export function CreateRoom() {
@@ -25,12 +29,15 @@ export function CreateRoom() {
                             name='name-room'
                             placeholder='Nome da sala' />
 
-                        <Button label='Criar sala' hasAIcon={false}/>
+                        <Button>
+                            <FiLogOut size='20' />
+                            Entrar
+                        </Button>
                     </form>
 
                     <span>
                         Quer entrar em uma sala já existente?
-                        <a href="/">Clique aqui</a>
+                        <Link to="/">Clique aqui</Link>
                     </span>
                 </div>
             </main>

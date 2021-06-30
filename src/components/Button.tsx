@@ -1,18 +1,12 @@
-import { HTMLAttributes } from "react";
+import { ButtonHTMLAttributes } from "react";
 
 import { FiLogIn } from 'react-icons/fi'
 import '../styles/components/button.scss'
 
-interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
-    label: string,
-    hasAIcon?: boolean
-}
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>
 
-export function Button({ label, hasAIcon = true, ...rest }: ButtonProps) {
+export function Button(props: ButtonProps) {
     return (
-        <button name={label} className='button-custom' {...rest}>
-            {hasAIcon && <FiLogIn size='20' />}
-            {label}
-        </button>
+        <button className='button-custom' {...props} />
     )
 }

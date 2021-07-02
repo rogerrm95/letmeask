@@ -16,8 +16,8 @@ function App() {
           <Switch>
             <Route path='/' component={Home} exact />
             <Route path='/rooms/new' component={CreateRoom} />
-            <Route path='/admin/room' component={AdminRoom} />
-            <Route path='/room' component={Room} />
+            <Route path='/admin/rooms/:id' component={AdminRoom} />
+            <Route path='/rooms/:id' component={Room} />
           </Switch>
 
         </AuthContextProvider>

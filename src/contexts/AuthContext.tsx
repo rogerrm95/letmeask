@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { createContext, ReactNode, useState } from 'react'
 import { firebase, auth } from '../services/firebase'
 
@@ -20,6 +21,28 @@ export const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
     const [user, setUser] = useState<User>()
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged(user => {
+            if (user) {
+                const { displayName, photoURL, uid } = user
+
+                if (!displayName || !photoURL) {
+                    throw new Error('Error, photo or name is missing')
+                }
+
+                setUser({
+                    id: uid,
+                    name: displayName,
+                    avatar: photoURL
+                })
+            }
+        })
+
+        return () => {
+            unsubscribe();
+        }
+    }, [])
 
     async function signInWithGoogle() {
         const provider = new firebase.auth.GoogleAuthProvider()

@@ -5,14 +5,15 @@ import LogoImage from '../../assets/logo.svg' // Image //
 import './styles.scss' // CSS //
 
 type HeaderProps = {
-    admin: boolean
+    admin: boolean,
+    closeRoom?: () => void
 }
 
 type CodeParams = {
     id: string
 }
 
-export function Header({ admin }: HeaderProps) {
+export function Header({ admin, closeRoom }: HeaderProps) {
 
     const { id } = useParams<CodeParams>()
     const roomCode = id
@@ -25,7 +26,7 @@ export function Header({ admin }: HeaderProps) {
                 <div>
                     <Clipboard code={roomCode} />
 
-                    {admin && <button className='close-room-button'>Encerrar Sala</button>}
+                    {admin && <button className='close-room-button' onClick={closeRoom}>Encerrar Sala</button>}
                 </div>
             </div>
         </header>

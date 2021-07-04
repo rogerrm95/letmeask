@@ -18,7 +18,8 @@
             flex-direction: row;
             justify-items: center;
             align-content: center;
-
+            gap: 1rem;
+            
             button {
                 height: 3rem;
                 border-radius: 0.5rem;
@@ -34,7 +35,6 @@
             .close-room-button {
                 background-color: #fff;
                 color: #835afd;
-                margin-left: 1rem;
                 padding: 0 12px;
 
                 transition: background-color 0.4s, color 0.4s;

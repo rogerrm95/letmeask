@@ -1,4 +1,8 @@
 import { Link, useHistory } from 'react-router-dom'
+import { FormEvent, useState } from 'react'
+import { database } from '../services/firebase'
+
+import { useAuth } from '../hooks/useAuth' // Hook //
 // Components //
 import { IlustrationAside } from './../components/IlustrationAside'
 import { Button } from '../components/Button'
@@ -8,12 +12,8 @@ import { FiLogOut } from 'react-icons/fi'
 import LetMeAskImage from '../assets/logo.svg'
 
 import '../styles/home.scss' // CSS //
-import { useAuth } from '../hooks/useAuth'
-import { FormEvent, useState } from 'react'
-import { database } from '../services/firebase'
 
 export function CreateRoom() {
-
     const { user } = useAuth()
     const { push } = useHistory()
 

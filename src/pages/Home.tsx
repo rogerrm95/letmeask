@@ -1,9 +1,10 @@
-import { FormEvent,useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import toast, { Toaster } from 'react-hot-toast'
+import { database } from '../services/firebase'
 
 import { useAuth } from '../hooks/useAuth' // Hook //
 import { FiLogOut } from 'react-icons/fi' // Icon //
-import { database } from '../services/firebase'
 // Images & Icons //
 import LetMeAskImage from '../assets/logo.svg'
 import GoogleIcon from '../assets/google-icon.svg'
@@ -12,39 +13,41 @@ import { IlustrationAside } from './../components/IlustrationAside'
 import { Button } from '../components/Button'
 
 import '../styles/home.scss' // CSS //
-import toast, { Toaster } from 'react-hot-toast'
 
 export function Home() {
     const { push } = useHistory()
     const { user, signInWithGoogle } = useAuth()
-
     const [code, setCode] = useState('')
 
     async function handleCreateRoom() {
-        if(!user){
+        if (!user) {
             await signInWithGoogle()
         }
         push('/rooms/new')
     }
 
-    async function handleJoinRoom(event: FormEvent){
+    async function handleJoinRoom(event: FormEvent) {
         event.preventDefault()
 
-        if(code.trim() === '') return
+        if (code.trim() === '') return
 
-        const refRoom = await database.ref(`rooms/${code}`).get()
+        const roomRef = await database.ref(`rooms/${code}`).get()
 
-        if(!refRoom.exists()){
-            toast.error('Erro: Sala encerrada ou inexistente!');
+        if (!roomRef.exists()) {
+            toast.error('Erro: Sala inexistente!');
             return
         }
 
-        push(`/admin/rooms/${refRoom.key}`)
+        if (roomRef.val().closedAt) {
+            toast.error('Esta sala já foi encerrada');
+            return
+        }
+
+        push(`/admin/rooms/${roomRef.key}`)
     }
 
     return (
         <div id='page-container'>
-
             <IlustrationAside
                 title='Toda pergunta tem uma resposta.'
                 description='Aprenda e compartilhe conhecimento com outras pessoas'
@@ -76,7 +79,7 @@ export function Home() {
                     </form>
                 </div>
             </main>
-            <Toaster position='top-center'/>
+            <Toaster position='top-center' />
         </div>
     )
 }

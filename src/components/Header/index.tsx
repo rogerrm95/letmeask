@@ -1,7 +1,8 @@
-import { Clipboard } from '../components/Clipboard' // Component //
-import LogoImage from '../assets/logo.svg' // Image //
-import '../styles/components/header.scss' // CSS //
 import { useParams } from 'react-router-dom'
+
+import { Clipboard } from '../Clipboard' // Component //
+import LogoImage from '../../assets/logo.svg' // Image //
+import './styles.scss' // CSS //
 
 type HeaderProps = {
     admin: boolean

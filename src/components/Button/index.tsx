@@ -1,7 +1,6 @@
 import { ButtonHTMLAttributes } from "react";
 
-import { FiLogIn } from 'react-icons/fi'
-import '../styles/components/button.scss'
+import './styles.scss'
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>
 

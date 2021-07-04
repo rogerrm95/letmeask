@@ -1,5 +1,6 @@
 import { FormEvent,useState } from 'react'
 import { useHistory } from 'react-router-dom'
+
 import { useAuth } from '../hooks/useAuth' // Hook //
 import { FiLogOut } from 'react-icons/fi' // Icon //
 import { database } from '../services/firebase'
@@ -7,7 +8,7 @@ import { database } from '../services/firebase'
 import LetMeAskImage from '../assets/logo.svg'
 import GoogleIcon from '../assets/google-icon.svg'
 // Components //
-import { IlustrationAside } from '../components/IlustrationAside'
+import { IlustrationAside } from './../components/IlustrationAside'
 import { Button } from '../components/Button'
 
 import '../styles/home.scss' // CSS //

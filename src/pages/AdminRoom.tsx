@@ -1,9 +1,10 @@
-// Components //
 import { useParams } from "react-router-dom";
+import { useRoom } from "../hooks/useRoom"; // Hook //
+// Components //
 import { Header } from "../components/Header";
-import { NoQuestions } from "../components/NoQuestions";
-import { Questions } from "../components/Questions";
-import { useRoom } from "../hooks/useRoom";
+import { NoQuestions } from "./../components/NoQuestionsMessage";
+import { Questions } from "./../components/Questions";
+
 
 import '../styles/room.scss'
 

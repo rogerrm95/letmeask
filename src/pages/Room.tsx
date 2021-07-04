@@ -2,14 +2,15 @@ import { FormEvent, useState } from "react";
 import { useParams } from "react-router-dom";
 import { database } from "../services/firebase";
 import toast, { Toaster } from "react-hot-toast";
+ // hooks //
+import { useAuth } from "../hooks/useAuth";
+import { useRoom } from "../hooks/useRoom";
 // Components //
 import { Button } from "../components/Button";
 import { Header } from "../components/Header";
-import { NoQuestions } from "../components/NoQuestions";
-import { Questions } from "../components/Questions";
+import { NoQuestions } from "./../components/NoQuestionsMessage";
+import { Questions } from "./../components/Questions";
 
-import { useAuth } from "../hooks/useAuth"; // hook //
-import { useRoom } from "../hooks/useRoom"; // hook //
 import '../styles/room.scss' // CSS //
 
 type RoomCodeProps = {

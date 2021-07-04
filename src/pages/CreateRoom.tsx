@@ -1,6 +1,6 @@
 import { Link, useHistory } from 'react-router-dom'
 // Components //
-import { IlustrationAside } from '../components/IlustrationAside'
+import { IlustrationAside } from './../components/IlustrationAside'
 import { Button } from '../components/Button'
 
 // Icon & Image //

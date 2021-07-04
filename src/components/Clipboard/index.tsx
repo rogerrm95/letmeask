@@ -1,7 +1,7 @@
 import { HTMLAttributes } from 'react'
 
-import copyImage from '../assets/copy.svg' // Icon //
-import '../styles/components/clipboard.scss' // CSS //
+import copyImage from '../../assets/copy.svg' // Icon //
+import './styles.scss' // CSS //
 
 interface ClipboardProps extends HTMLAttributes<HTMLButtonElement> {
     code: string 

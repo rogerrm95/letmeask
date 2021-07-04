@@ -1,7 +1,5 @@
-// Icons //
-import { FiTrash, FiCheck, FiMessageSquare, FiThumbsUp } from 'react-icons/fi'
-
-import '../styles/components/questions.scss'
+import { FiTrash, FiCheck, FiMessageSquare, FiThumbsUp } from 'react-icons/fi' // Icon //
+import './styles.scss' // CSS //
 
 type QuestionsProps = {
     isAdmin: boolean,

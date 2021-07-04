@@ -1,5 +1,5 @@
-import commentsImage from '../assets/empty-questions.svg' // Image //
-import '../styles/components/noQuestions.scss' // CSS //
+import commentsImage from '../../assets/empty-questions.svg' // Image //
+import './styles.scss' // CSS //
 
 export function NoQuestions() {
     return (

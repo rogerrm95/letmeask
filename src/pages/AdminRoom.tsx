@@ -5,8 +5,6 @@ import { Questions } from "../components/Questions";
 
 import '../styles/room.scss'
 
-const questions = true
-
 export function AdminRoom() {
     return (
         <div className='page-admin-room'>
@@ -19,7 +17,7 @@ export function AdminRoom() {
                 </div>
 
                 {
-                    questions ? (<ul><Questions /><Questions /></ul>) : <NoQuestions />
+                    //questions ? (<ul><Questions /><Questions /></ul>) : <NoQuestions />
                 }
             </main>
         </div>

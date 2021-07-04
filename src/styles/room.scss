@@ -8,11 +8,6 @@
         align-items: flex-start;
         justify-content: flex-start;
     }
-
-    ul {
-        list-style: none;
-        margin-top: 2rem;
-    }
 }
 
 .admin-room-head {
@@ -66,12 +61,36 @@
         justify-content: space-between;
 
         span {
-           font-size: 0.75rem;
-           color: #737380;
-           
-           a {
-               color: #835AFD
-           }
+            font-size: 0.75rem;
+            color: #737380;
+
+            button {
+                color: #835afd;
+                border: none;
+                background: transparent;
+                font-family: inherit;
+                font-size: inherit;
+                cursor: pointer;
+            }
+        }
+
+        .room-user-info {
+            display: flex;
+            align-items: center;
+            padding-left: 0.25rem;
+
+            img {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                margin-right: 0.5rem;
+            }
+
+            > span {
+                font-weight: 500;
+                font-size: 0.85rem;
+                color: #29292E;
+            }
         }
     }
 }

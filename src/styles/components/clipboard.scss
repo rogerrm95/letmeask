@@ -1,7 +1,9 @@
 .clipboard {
+    background-color: #fff;
+
     div {
         background-color: #835afd;
-        padding: 0 12px;
+        padding: 0 0.75rem;
 
         height: 100%;
         display: flex;
@@ -14,7 +16,13 @@
     }
 
     span {
+        display: block;
+        align-self: center;
+        flex: 1;
+        padding: 0 1rem 0 0.75rem;
+        width: 15rem;
         color: #000;
-        padding: 0 12px;
+        font-size: 0.85rem;
+        font-weight: 500;
     }
 }

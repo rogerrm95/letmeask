@@ -1,34 +1,51 @@
 // Icons //
-import { FiUser, FiTrash, FiCheck, FiMessageSquare, FiThumbsUp } from 'react-icons/fi'
+import { FiTrash, FiCheck, FiMessageSquare, FiThumbsUp } from 'react-icons/fi'
 
 import '../styles/components/questions.scss'
 
-// RETIRAR //
-const isliked = true
+type QuestionsProps = {
+    isAdmin: boolean,
+    questions: Question[]
+}
 
-export function Questions() {
+type Question = {
+    id: string,
+    author: {
+        name: string,
+        avatar: string
+    },
+    content: string,
+    isAnswered: boolean,
+    isHighlighted: boolean
+}
+
+export function Questions(props: QuestionsProps) {
     return (
-        <li className='question-item'>
-            <p>
-                Olá, eu gostaria de saber como criar um componente funcional dentro do React e se
-                existe diferença na perfomance entre um componente com classes.
-                existe diferença na perfomance entre um componente com classes.
-            </p>
+        <ul>
+            {
+                props.questions.map(question => {
+                    return (
+                        <li className='question-item' key={question.id}>
+                            <p>{question.content}</p>
 
-            <footer>
-                <div className='user-info'>
-                    <div><FiUser color='#F8F8F8'/></div>
-                    <span>Rogério Marques</span>
-                </div>
+                            <footer>
+                                <div className='user-info'>
+                                    <img src={question.author.avatar} alt={`Foto do ${question.author.name}`} />
+                                    <span>{question.author.name}</span>
+                                </div>
 
-                <div className='actions-group'>
-                    <FiCheck size='24'/>
-                    <FiMessageSquare size='24'/>
-                    <FiTrash className='delete' size='24'/>
-                    
-                    {isliked && <FiThumbsUp size='24'/>}
-                </div>
-            </footer>
-        </li>
+                                <div className='actions-group'>
+                                    {props.isAdmin && <FiCheck size='24' />}
+                                    {props.isAdmin && <FiMessageSquare size='24' />}
+                                    {props.isAdmin && <FiTrash className='delete' size='24' />}
+
+                                    {!props.isAdmin && <FiThumbsUp size='24' />}
+                                </div>
+                            </footer>
+                        </li>
+                    )
+                })
+            }
+        </ul>
     )
 }

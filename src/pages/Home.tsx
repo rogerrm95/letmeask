@@ -2,7 +2,7 @@ import { FormEvent,useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth' // Hook //
 import { FiLogOut } from 'react-icons/fi' // Icon //
-import { database, firebase } from '../services/firebase'
+import { database } from '../services/firebase'
 // Images & Icons //
 import LetMeAskImage from '../assets/logo.svg'
 import GoogleIcon from '../assets/google-icon.svg'
@@ -11,6 +11,7 @@ import { IlustrationAside } from '../components/IlustrationAside'
 import { Button } from '../components/Button'
 
 import '../styles/home.scss' // CSS //
+import toast, { Toaster } from 'react-hot-toast'
 
 export function Home() {
     const { push } = useHistory()
@@ -33,7 +34,7 @@ export function Home() {
         const refRoom = await database.ref(`rooms/${code}`).get()
 
         if(!refRoom.exists()){
-            alert('Room not exists');
+            toast.error('Erro: Sala encerrada ou inexistente!');
             return
         }
 
@@ -74,6 +75,7 @@ export function Home() {
                     </form>
                 </div>
             </main>
+            <Toaster position='top-center'/>
         </div>
     )
 }

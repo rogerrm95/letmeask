@@ -4,7 +4,7 @@ import copyImage from '../assets/copy.svg' // Icon //
 import '../styles/components/clipboard.scss' // CSS //
 
 interface ClipboardProps extends HTMLAttributes<HTMLButtonElement> {
-    code?: string 
+    code: string 
 }
 
 export function Clipboard({ code , ...rest }: ClipboardProps) {
@@ -18,7 +18,7 @@ export function Clipboard({ code , ...rest }: ClipboardProps) {
             <div>
                 <img src={copyImage} alt="Copiar código" />
             </div>
-            <span>Sala {code ? `#${code}` : "#323243"}</span>
+            <span>Código {code}</span>
         </button>
     )
 }

@@ -1,41 +1,43 @@
 .page-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-
     padding: 1.5rem;
     border-bottom: 1px solid #e2e2e2;
 
-    img {
-        max-height: 45px;
-    }
-
-    > div {
+    .content {
+        max-width: 1120px;
+        margin: 0 auto;
         display: flex;
-        flex-direction: row;
-        justify-items: center;
-        align-content: center;
+        align-items: center;
+        justify-content: space-between;
 
-        button {
-            background-color: #fff;
-            color: #835afd;
-            height: 3rem;
-            border-radius: 0.5rem;
+        > img {
+            max-height: 45px;
+        }
 
-            border: 1px solid #835afd;
-            cursor: pointer;
-            overflow: hidden;
-
+        > div {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: row;
+            justify-items: center;
+            align-content: center;
 
-            &:last-child {
+            button {
+                height: 3rem;
+                border-radius: 0.5rem;
+                border: 1px solid #835afd;
+                cursor: pointer;
+                overflow: hidden;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            button:last-of-type {
+                background-color: #fff;
+                color: #835afd;
                 margin-left: 1rem;
                 padding: 0 12px;
 
-                transition: background-color 0.3s;
+                transition: background-color 0.4s, color 0.4s;
 
                 &:hover {
                     background-color: #835afd;

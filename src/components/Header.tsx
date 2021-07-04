@@ -3,13 +3,17 @@ import LogoImage from '../assets/logo.svg' // Image //
 import '../styles/components/header.scss' // CSS //
 import { useParams } from 'react-router-dom'
 
+type HeaderProps = {
+    admin: boolean
+}
+
 type CodeParams = {
     id: string
 }
 
-export function Header() {
+export function Header({ admin }: HeaderProps) {
 
-    const { id }= useParams<CodeParams>()
+    const { id } = useParams<CodeParams>()
     const roomCode = id
 
     return (
@@ -20,9 +24,7 @@ export function Header() {
                 <div>
                     <Clipboard code={roomCode} />
 
-                    <button>
-                        Encerrar Sala
-                    </button>
+                    {admin && <button className='close-room-button'>Encerrar Sala</button>}
                 </div>
             </div>
         </header>

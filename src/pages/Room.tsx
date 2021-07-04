@@ -1,72 +1,28 @@
 import { FormEvent, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
 import { database } from "../services/firebase";
 import toast, { Toaster } from "react-hot-toast";
 // Components //
 import { Button } from "../components/Button";
 import { Header } from "../components/Header";
 import { NoQuestions } from "../components/NoQuestions";
-import {Questions} from "../components/Questions";
+import { Questions } from "../components/Questions";
 
 import { useAuth } from "../hooks/useAuth"; // hook //
+import { useRoom } from "../hooks/useRoom"; // hook //
 import '../styles/room.scss' // CSS //
 
 type RoomCodeProps = {
     id: string
 }
 
-type FirebaseQuestions = Record<string, {
-    author: {
-        name: string,
-        avatar: string
-    },
-    content: string,
-    isAnswered: boolean,
-    isHighlighted: boolean
-}>
-
-type Question = {
-    id: string,
-    author: {
-        name: string,
-        avatar: string
-    },
-    content: string,
-    isAnswered: boolean,
-    isHighlighted: boolean
-}
-
 export function Room() {
-    const { user } = useAuth()
     const { id } = useParams<RoomCodeProps>()
+    const { user } = useAuth()
+    const { title, questions } = useRoom(id)
 
     const [newQuestion, setNewQuestion] = useState('')
-    const [title, setTitle] = useState('')
-    const [questions, setQuestions] = useState<Question[]>([])
 
-    useEffect(() => {
-        const roomRef = database.ref(`rooms/${id}`)
-
-        roomRef.on('value', room => {
-            const databaseRoom = room.val()
-            const firebaseQuestions: FirebaseQuestions = databaseRoom.questions ?? {}
-
-            const parsedQuestions = Object.entries(firebaseQuestions).map(([key, value]) => {
-                return {
-                    id: key,
-                    content: value.content,
-                    author: value.author,
-                    isAnswered: value.isAnswered,
-                    isHighlighted: value.isHighlighted
-                }
-            })
-
-            setTitle(databaseRoom.title)
-            setQuestions(parsedQuestions)
-
-        })
-    }, [id])
 
     async function handleSendQuestion(event: FormEvent) {
         event.preventDefault()
@@ -100,7 +56,7 @@ export function Room() {
 
     return (
         <div className='page-admin-room'>
-            <Header />
+            <Header admin={false} />
 
             <main>
                 <div className='admin-room-head'>
@@ -136,10 +92,10 @@ export function Room() {
                         </Button>
                     </footer>
 
-                    {questions.length > 0 ? 
-                    (<Questions questions={questions} isAdmin={false} />)
-                    :
-                    (<NoQuestions />)}
+                    {questions.length > 0 ?
+                        (<Questions questions={questions} isAdmin={false} />)
+                        :
+                        (<NoQuestions />)}
                 </form>
             </main>
 

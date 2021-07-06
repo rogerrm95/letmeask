@@ -7,8 +7,11 @@ import { useRoom } from "../hooks/useRoom";
 import { Header } from "../components/Header";
 import { NoQuestions } from "./../components/NoQuestionsMessage";
 import { Question } from "./../components/Question";
+// Icons //
+import DeleteIcon from '../assets/delete.svg'
+import CheckIcon from '../assets/check.svg'
+import Answer from '../assets/answer.svg'
 
-import DeleteIcon from '../assets/delete.svg' // Icon //
 import '../styles/room.scss'
 
 type CodeProps = {
@@ -19,6 +22,18 @@ export function AdminRoom() {
     const { id } = useParams<CodeProps>()
     const { push } = useHistory()
     const { questions, title } = useRoom(id)
+
+    async function handleCheckQuestionAsAnswered(questionId: string) {
+        await database.ref(`rooms/${id}/questions/${questionId}`).update({
+            isAnswered: true
+        })
+    }
+
+    async function handleHighlightQuestion(questionId: string) {
+        await database.ref(`rooms/${id}/questions/${questionId}`).update({
+            isHighLighted: true
+        })
+    }
 
     async function handleToRemoveQuestion(questionId: string) {
         await database.ref(`rooms/${id}/questions/${questionId}`).remove()
@@ -51,8 +66,34 @@ export function AdminRoom() {
                     questions.length > 0 ?
                         (
                             questions.map(question => (
-                                <Question content={question.content} author={question.author} key={question.id}>
-                                    <button className='delete-button' onClick={() => handleToRemoveQuestion(question.id)}>
+                                <Question
+                                    key={question.id}
+                                    content={question.content}
+                                    author={question.author}
+                                    isHighLighted={question.isHighLighted}
+                                    isAnswered={question.isAnswered}
+                                >
+                                    {!question.isAnswered && (
+                                        <>
+                                            <button
+                                                className='check-button'
+                                                onClick={() => handleCheckQuestionAsAnswered(question.id)}>
+                                                <img src={CheckIcon} alt="Marcar pergunta como respondida" />
+                                            </button>
+
+                                            <button
+                                                className='anwser-button'
+                                                onClick={() => handleHighlightQuestion(question.id)}
+                                            >
+                                                <img src={Answer} alt="Dar destaque a pergunta" />
+                                            </button>
+
+                                        </>
+                                    )}
+
+                                    <button
+                                        className='delete-button'
+                                        onClick={() => handleToRemoveQuestion(question.id)}>
                                         <img src={DeleteIcon} alt="Lixeira" aria-label='Deletar pergunta' />
                                     </button>
                                 </Question>

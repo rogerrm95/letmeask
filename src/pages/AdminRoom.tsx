@@ -1,17 +1,19 @@
-import toast, { Toaster } from "react-hot-toast";
+import { useState } from "react";
 import { database } from "../services/firebase";
+import toast, { Toaster } from "react-hot-toast";
 // Hooks //
 import { useHistory, useParams } from "react-router-dom";
 import { useRoom } from "../hooks/useRoom";
 // Components //
 import { Header } from "../components/Header";
+import { Modal } from "../components/Modal";
 import { NoQuestions } from "./../components/NoQuestionsMessage";
 import { Question } from "./../components/Question";
 // Icons //
 import DeleteIcon from '../assets/delete.svg'
 import CheckIcon from '../assets/check.svg'
-import Answer from '../assets/answer.svg'
-
+import AnswerIcon from '../assets/answer.svg'
+// SCSS //
 import '../styles/room.scss'
 
 type CodeProps = {
@@ -22,6 +24,9 @@ export function AdminRoom() {
     const { id } = useParams<CodeProps>()
     const { push } = useHistory()
     const { questions, title } = useRoom(id)
+
+    const [questionIdForModal, setQuestionIdForModal] = useState('')
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     async function handleCheckQuestionAsAnswered(questionId: string) {
         await database.ref(`rooms/${id}/questions/${questionId}`).update({
@@ -35,8 +40,9 @@ export function AdminRoom() {
         })
     }
 
-    async function handleToRemoveQuestion(questionId: string) {
-        await database.ref(`rooms/${id}/questions/${questionId}`).remove()
+    function openModalForDeleteQuestion(questionId: string) {
+        setQuestionIdForModal(questionId)
+        setIsModalOpen(true)
     }
 
     async function handleCloseRoom() {
@@ -85,7 +91,7 @@ export function AdminRoom() {
                                                 className='anwser-button'
                                                 onClick={() => handleHighlightQuestion(question.id)}
                                             >
-                                                <img src={Answer} alt="Dar destaque a pergunta" />
+                                                <img src={AnswerIcon} alt="Dar destaque a pergunta" />
                                             </button>
 
                                         </>
@@ -93,7 +99,7 @@ export function AdminRoom() {
 
                                     <button
                                         className='delete-button'
-                                        onClick={() => handleToRemoveQuestion(question.id)}>
+                                        onClick={() => openModalForDeleteQuestion(question.id)}>
                                         <img src={DeleteIcon} alt="Lixeira" aria-label='Deletar pergunta' />
                                     </button>
                                 </Question>
@@ -103,6 +109,12 @@ export function AdminRoom() {
                 }
             </main>
             <Toaster position='top-center' />
+            <Modal
+                setIsModalOpen={setIsModalOpen}
+                isModalOpen={isModalOpen}
+                questionId={questionIdForModal}
+                roomId={id}
+            />
         </div>
     )
 }

@@ -26,3 +26,12 @@
         font-weight: 500;
     }
 }
+
+// Media Queries //
+@media (max-width: 600px) {
+    .clipboard {
+        span {
+            display: none;
+        }
+    }
+}

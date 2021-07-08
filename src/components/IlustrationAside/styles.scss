@@ -16,15 +16,31 @@ aside {
 
     p {
         font: 700 2rem "Poppins", sans-serif;
-        max-width: 65%;
+        max-width: 75%;
         margin-bottom: 1rem;
         line-height: 42px;
     }
 
     span {
         font-size: 1.5rem;
-        max-width: 85%;
+        max-width: 90%;
         line-height: 32px;
         color: #f8f8f8;
+    }
+}
+
+// Media Queries //
+@media (max-width: 1150px) {
+    aside {
+        p {
+            max-width: 100%;
+        }
+
+        span {
+            font-size: 1.5rem;
+            max-width: 100%;
+            line-height: 32px;
+            color: #f8f8f8;
+        }
     }
 }

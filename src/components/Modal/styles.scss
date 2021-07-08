@@ -1,4 +1,5 @@
 .Modal {
+    max-width: 900px;
     position: absolute;
     top: 25%;
     left: 20%;
@@ -12,12 +13,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
-    img {
-        width: 3rem;
-        height: auto;
-        margin-bottom: 1.5rem;
-    }
 
     h1 {
         color: #29292e;
@@ -52,19 +47,19 @@
 
             transition: filter 0.3s;
 
-            &:hover{
+            &:hover {
                 filter: brightness(0.9);
             }
         }
 
         #button-cancel {
             color: #737380;
-            background-color: #DBDCDD;
+            background-color: #dbdcdd;
         }
 
         #button-delete {
-            color: #FFF;
-            background-color: #E73F5D;
+            color: #fff;
+            background-color: #e73f5d;
         }
     }
 }
@@ -76,5 +71,27 @@
     right: 0;
     bottom: 0;
     background-color: #05020680;
-    width: 100%;
+}
+
+// Media Queries //
+@media (max-width: 600px) {
+    .Modal {
+        top: 10%;
+        left: 10%;
+        right: 10%;
+        bottom: 10%;
+        gap: 1rem;
+
+        h1 {
+            font-size: 2rem;
+        }
+    }
+
+    .modal-button-group {
+        flex-direction: column;
+
+        button:first-child {
+            margin-bottom: 1rem;
+        }
+    }
 }

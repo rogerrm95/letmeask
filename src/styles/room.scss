@@ -1,6 +1,6 @@
 .page-admin-room {
     height: 100%;
-    
+
     main {
         max-width: 800px;
         margin: 0 auto;
@@ -60,6 +60,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        margin: 1.5rem 0;
 
         > span {
             font-size: 0.75rem;
@@ -90,8 +91,17 @@
             > span {
                 font-weight: 500;
                 font-size: 0.85rem;
-                color: #29292E;
+                color: #29292e;
             }
+        }
+    }
+}
+
+// Media Queries //
+@media (max-width: 800px) {
+    .page-admin-room {
+        main {
+            align-items: center;
         }
     }
 }

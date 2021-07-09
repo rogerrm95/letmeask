@@ -1,11 +1,10 @@
 import { FormEvent, useState } from 'react'
-import { useHistory } from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast'
 import { database } from '../services/firebase'
-
+import { useHistory } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth' // Hook //
-import { FiLogOut } from 'react-icons/fi' // Icon //
 // Images & Icons //
+import { FiLogOut } from 'react-icons/fi'
 import LetMeAskImage from '../assets/logo.svg'
 import GoogleIcon from '../assets/google-icon.svg'
 // Components //

@@ -21,7 +21,7 @@ type RoomCodeProps = {
 
 export function Room() {
     const { id } = useParams<RoomCodeProps>()
-    const { user, signOutWithGoogle } = useAuth()
+    const { user, signOutWithGoogle, signInWithGoogle } = useAuth()
     const { title, questions } = useRoom(id)
 
     const [newQuestion, setNewQuestion] = useState('')
@@ -68,10 +68,6 @@ export function Room() {
         }
     }
 
-    async function handleLogout() {
-        await signOutWithGoogle()
-    }
-
     return (
         <div className='page-admin-room'>
             <Header admin={false} />
@@ -101,7 +97,9 @@ export function Room() {
                                     </div>
                                 ) :
                                 (
-                                    <span>Para enviar uma pergunta, <button>faça seu login.</button></span>
+                                    <span>Para enviar uma pergunta,
+                                        <button type='button' onClick={signInWithGoogle}>faça seu login.</button>
+                                    </span>
                                 )
                         }
 
@@ -146,9 +144,13 @@ export function Room() {
                 }
             </main>
 
-            <button className='button-logout'>
-                <FiLogOut size='20' />
-            </button>
+            {
+                user && (
+                    <button className='button-logout' type='button' onClick={signOutWithGoogle}>
+                        <FiLogOut size='20' />
+                    </button>
+                )
+            }
 
             <Toaster position='top-center' />
         </div>

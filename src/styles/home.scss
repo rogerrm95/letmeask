@@ -8,10 +8,10 @@
 
     main {
         flex: 8;
-
         padding: 0 2rem;
 
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
     }
@@ -32,9 +32,10 @@
 
     > img {
         align-self: center;
+        cursor: pointer;
     }
 
-    h2 {
+    > h2 {
         margin: 3.5rem 0 1.5rem;
         font-family: "Poppins", sans-serif;
     }
@@ -56,6 +57,18 @@
         button,
         input {
             width: 100%;
+        }
+    }
+
+    > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 2rem 0;
+
+        h2{
+            text-align: right;
         }
     }
 
@@ -129,6 +142,26 @@
     }
 }
 
+#logout-button {
+    margin-top: 1.5rem;
+
+    span {
+        font-size: 0.75rem;
+        margin-top: 1rem;
+        color: #737380;
+
+        button {
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+
+            color: #e559f9;
+            text-decoration: underline;
+            font-size: 0.75rem;
+        }
+    }
+}
+
 // Media Queries //
 @media (min-width: 1440px) {
     #page-container {
@@ -146,5 +179,15 @@
         main {
             flex: 1;
         }
+
+        .google-button {
+            font-size: 1rem;
+        }
+    }
+}
+
+@media (max-width: 850px) { 
+    .google-button {
+        font-size: 0.75rem;
     }
 }

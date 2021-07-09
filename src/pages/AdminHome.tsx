@@ -8,20 +8,21 @@ import { FiLogOut } from 'react-icons/fi'
 import LetMeAskImage from '../assets/logo.svg'
 import GoogleIcon from '../assets/google-icon.svg'
 // Components //
-import { IlustrationAside } from './../components/IlustrationAside'
+import { IlustrationAside } from '../components/IlustrationAside'
 import { Button } from '../components/Button'
 
 import '../styles/home.scss' // CSS //
 
-export function Home() {
+export function AdminHome() {
     const { push } = useHistory()
     const { user, signInWithGoogle, signOutWithGoogle } = useAuth()
     const [code, setCode] = useState('')
 
-    async function handleLoginWithGoogle() {
+    async function handleCreateRoom() {
         if (!user) {
             await signInWithGoogle()
         }
+        push('/admin/rooms/new')
     }
 
     async function handleJoinRoom(event: FormEvent) {
@@ -41,7 +42,7 @@ export function Home() {
             return
         }
 
-        push(`/rooms/${roomRef.key}`)
+        push(`/admin/rooms/${roomRef.key}`)
     }
 
     return (
@@ -55,25 +56,14 @@ export function Home() {
                 <div className='main-content'>
                     <img src={LetMeAskImage} alt="Logo LetMeAsk" onClick={() => push('/')}/>
 
-                    {
-                        !user ?
-                            (
-                                <>
-                                    <button className='google-button' onClick={handleLoginWithGoogle}>
-                                        <img src={GoogleIcon} alt="Logo da Google" />
-                                        Entrar com uma conta do Google
-                                    </button>
+                    <button className='google-button' onClick={handleCreateRoom}>
+                        <img src={GoogleIcon} alt="Logo da Google" />
+                        {
+                            user ? 'Crie sua sala com o Google' : 'Entrar com a conta Google'
+                        }
+                    </button>
 
-                                    <span className='custom-divider'>Ou entre em uma sala</span>
-                                </>
-                            )
-                            :
-                            (
-                                <div>
-                                    <h2>Olá, {user.name}</h2>
-                                </div>
-                            )
-                    }
+                    <span className='custom-divider'>Ou entre em uma sala</span>
 
                     <form action="submit" onSubmit={(event) => handleJoinRoom(event)}>
                         <input

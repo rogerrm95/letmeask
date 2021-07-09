@@ -15,6 +15,8 @@ import CheckIcon from '../assets/check.svg'
 import AnswerIcon from '../assets/answer.svg'
 // SCSS //
 import '../styles/room.scss'
+import { useAuth } from "../hooks/useAuth";
+import { FiLogOut } from "react-icons/fi";
 
 type CodeProps = {
     id: string
@@ -23,6 +25,7 @@ type CodeProps = {
 export function AdminRoom() {
     const { id } = useParams<CodeProps>()
     const { push } = useHistory()
+    const { user, signOutWithGoogle } = useAuth()
     const { questions, title } = useRoom(id)
 
     const [questionIdForModal, setQuestionIdForModal] = useState('')
@@ -56,6 +59,11 @@ export function AdminRoom() {
         catch (error) {
             toast.error("Erro ao encerrar sala")
         }
+    }
+
+    async function logOut(){
+        await signOutWithGoogle()
+        push('/admin/home')
     }
 
     return (
@@ -108,6 +116,15 @@ export function AdminRoom() {
                         : <NoQuestions />
                 }
             </main>
+
+            {
+                user && (
+                    <button className='button-logout' type='button' onClick={() => push('/admin/home')}>
+                        <FiLogOut size='20' />
+                    </button>
+                )
+            }
+
             <Toaster position='top-center' />
             <Modal
                 setIsModalOpen={setIsModalOpen}

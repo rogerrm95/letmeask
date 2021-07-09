@@ -9,8 +9,9 @@
         align-items: center;
         justify-content: space-between;
 
-        > img {
+        a > img {
             max-height: 45px;
+            cursor: pointer;
         }
 
         > div {

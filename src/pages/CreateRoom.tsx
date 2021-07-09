@@ -64,7 +64,7 @@ export function CreateRoom() {
 
                     <span>
                         Quer entrar em uma sala já existente?
-                        <Link to="/">Clique aqui</Link>
+                        <Link to="/admin/home">Clique aqui</Link>
                     </span>
                 </div>
             </main>

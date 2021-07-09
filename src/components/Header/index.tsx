@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 import { Clipboard } from '../Clipboard' // Component //
 import LogoImage from '../../assets/logo.svg' // Image //
@@ -21,7 +21,9 @@ export function Header({ admin, closeRoom }: HeaderProps) {
     return (
         <header className='page-header'>
             <div className="content">
-                <img src={LogoImage} alt="Logo LetMeAsk" />
+                <Link to='/'>
+                    <img src={LogoImage} alt="Logo LetMeAsk"/>
+                </Link>
 
                 <div>
                     <Clipboard code={roomCode} />

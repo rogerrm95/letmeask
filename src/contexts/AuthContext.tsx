@@ -8,6 +8,7 @@ interface AuthContextProviderProps {
 
 interface AuthContextData {
     user: User | undefined,
+    isLoading: boolean,
     signInWithGoogle: () => Promise<void>,
     signOutWithGoogle: () => Promise<void>
 }
@@ -22,6 +23,7 @@ export const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
     const [user, setUser] = useState<User>()
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
@@ -46,21 +48,28 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     }, [])
 
     async function signInWithGoogle() {
-        const provider = new firebase.auth.GoogleAuthProvider()
-        const result = await auth.signInWithPopup(provider)
+        try {
+            setIsLoading(true)
+            const provider = new firebase.auth.GoogleAuthProvider()
+            const result = await auth.signInWithPopup(provider)
 
-        if (result.user) {
-            const { displayName, photoURL, uid } = result.user
+            if (result.user) {
+                const { displayName, photoURL, uid } = result.user
 
-            if (!displayName || !photoURL) {
-                throw new Error('Error, photo or name is missing')
+                if (!displayName || !photoURL) {
+                    throw new Error('Error, photo or name is missing')
+                }
+
+                setUser({
+                    id: uid,
+                    name: displayName,
+                    avatar: photoURL
+                })
             }
 
-            setUser({
-                id: uid,
-                name: displayName,
-                avatar: photoURL
-            })
+            setIsLoading(false)
+        } catch {
+            setIsLoading(false)
         }
     }
 
@@ -71,7 +80,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     }
 
     return (
-        <AuthContext.Provider value={{ signInWithGoogle, signOutWithGoogle, user }}>
+        <AuthContext.Provider value={{ signInWithGoogle, signOutWithGoogle, isLoading, user }}>
             {children}
         </AuthContext.Provider>
     )

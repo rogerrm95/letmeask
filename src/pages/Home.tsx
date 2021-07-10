@@ -13,9 +13,11 @@ import { Button } from '../components/Button'
 
 import '../styles/home.scss' // CSS //
 
+import ClipboardSpinner from 'react-spinners/ClipLoader'
+
 export function Home() {
     const { push } = useHistory()
-    const { user, signInWithGoogle, signOutWithGoogle } = useAuth()
+    const { user, signInWithGoogle, signOutWithGoogle, isLoading } = useAuth()
     const [code, setCode] = useState('')
 
     async function handleLoginWithGoogle() {
@@ -53,15 +55,28 @@ export function Home() {
 
             <main>
                 <div className='main-content'>
-                    <img src={LetMeAskImage} alt="Logo LetMeAsk" onClick={() => push('/')}/>
+                    <img src={LetMeAskImage} alt="Logo LetMeAsk" onClick={() => push('/')} />
 
                     {
                         !user ?
                             (
                                 <>
-                                    <button className='google-button' onClick={handleLoginWithGoogle}>
-                                        <img src={GoogleIcon} alt="Logo da Google" />
-                                        Entrar com uma conta do Google
+                                    <button
+                                        disabled={isLoading ? true : false}
+                                        className='google-button'
+                                        onClick={handleLoginWithGoogle}>
+                                        {
+                                            isLoading ?
+                                                (
+                                                    <ClipboardSpinner color='white' />
+                                                ) :
+                                                (
+                                                    <>
+                                                        <img src={GoogleIcon} alt="Logo da Google" />
+                                                        {user ? 'Criar sala com o Google' : 'Entrar com a conta Google'}
+                                                    </>
+                                                )
+                                        }
                                     </button>
 
                                     <span className='custom-divider'>Ou entre em uma sala</span>

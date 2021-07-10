@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { database } from "../services/firebase";
-import toast, { Toaster } from "react-hot-toast";
 // Hooks //
 import { useHistory, useParams } from "react-router-dom";
 import { useRoom } from "../hooks/useRoom";
 import { useAuth } from "../hooks/useAuth";
 // Components //
 import { Header } from "../components/Header";
-import { Modal } from "../components/Modal";
+import { ModalDeleteAnwser } from "../components/ModalDeleteAnwser";
+import { ModalClosedAtRoom } from "../components/ModalClosedAtRoom";
 import { NoQuestions } from "./../components/NoQuestionsMessage";
 import { Question } from "./../components/Question";
 import { Spinner } from "../components/Spinner";
@@ -30,7 +30,8 @@ export function AdminRoom() {
     const { questions, title, isLoading } = useRoom(id)
 
     const [questionIdForModal, setQuestionIdForModal] = useState('')
-    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isModalForClosedAtRoom, setIsModalForClosedAtRoom] = useState(false)
+    const [isModalDeleteToAnwserOpen, setIsModalDeleteToAnwserOpen] = useState(false)
 
     async function handleCheckQuestionAsAnswered(questionId: string) {
         await database.ref(`rooms/${id}/questions/${questionId}`).update({
@@ -46,27 +47,18 @@ export function AdminRoom() {
 
     function openModalForDeleteQuestion(questionId: string) {
         setQuestionIdForModal(questionId)
-        setIsModalOpen(true)
+        setIsModalDeleteToAnwserOpen(true)
     }
 
-    async function handleCloseRoom() {
-        try {
-            await database.ref(`rooms/${id}`).update({
-                closedAt: new Date()
-            })
-
-            push('/')
-        }
-        catch (error) {
-            toast.error("Erro ao encerrar sala")
-        }
+    function openModalForClosedAtRoom() {
+        setIsModalForClosedAtRoom(true)
     }
 
     if (isLoading) return <Spinner color='#FF59F8' size='72' speedMultiplier={0.5} />
 
     return (
         <div className='page-admin-room'>
-            <Header admin closeRoom={() => handleCloseRoom()} />
+            <Header admin closeRoom={() => openModalForClosedAtRoom()} />
 
             <main>
                 <div className='admin-room-head'>
@@ -123,11 +115,15 @@ export function AdminRoom() {
                 )
             }
 
-            <Toaster position='top-center' />
-            <Modal
-                setIsModalOpen={setIsModalOpen}
-                isModalOpen={isModalOpen}
+            <ModalDeleteAnwser
+                setIsModalOpen={setIsModalDeleteToAnwserOpen}
+                isModalOpen={isModalDeleteToAnwserOpen}
                 questionId={questionIdForModal}
+                roomId={id}
+            />
+            <ModalClosedAtRoom
+                setIsModalOpen={setIsModalForClosedAtRoom}
+                isModalOpen={isModalForClosedAtRoom}
                 roomId={id}
             />
         </div>

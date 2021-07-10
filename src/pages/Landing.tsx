@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import HeroImage from '../assets/heroImage.svg'
+
+import HeroImage from '../assets/heroImage.svg' // Image //
 
 import '../styles/landing.scss'
 

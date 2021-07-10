@@ -10,6 +10,7 @@ import { Button } from "../components/Button";
 import { Header } from "../components/Header";
 import { NoQuestions } from "./../components/NoQuestionsMessage";
 import { Question } from "./../components/Question";
+import { Spinner } from "../components/Spinner";
 
 import { FiLogOut } from 'react-icons/fi' // Icon //
 
@@ -22,7 +23,7 @@ type RoomCodeProps = {
 export function Room() {
     const { id } = useParams<RoomCodeProps>()
     const { user, signOutWithGoogle, signInWithGoogle } = useAuth()
-    const { title, questions } = useRoom(id)
+    const { title, questions, isLoading } = useRoom(id)
 
     const [newQuestion, setNewQuestion] = useState('')
 
@@ -58,7 +59,6 @@ export function Room() {
     }
 
     async function handleLikeQuestion(questionId: string, likeId: string | undefined) {
-
         if (likeId) {
             await database.ref(`rooms/${id}/questions/${questionId}/likes/${likeId}`).remove()
         } else {
@@ -67,6 +67,8 @@ export function Room() {
             })
         }
     }
+
+    if (isLoading) return <Spinner color='#FF59F8' size='72' speedMultiplier={0.5} />
 
     return (
         <div className='page-admin-room'>
@@ -121,7 +123,7 @@ export function Room() {
                                             content={question.content}
                                             isAnswered={question.isAnswered}
                                             isHighLighted={question.isHighLighted}>
-                                            {!question.isAnswered && (
+                                            {(!question.isAnswered && user) && (
                                                 <button
                                                     className={`like-button ${question.likeId ? 'liked' : ''}`}
                                                     type='button'

@@ -4,19 +4,20 @@ import toast, { Toaster } from "react-hot-toast";
 // Hooks //
 import { useHistory, useParams } from "react-router-dom";
 import { useRoom } from "../hooks/useRoom";
+import { useAuth } from "../hooks/useAuth";
 // Components //
 import { Header } from "../components/Header";
 import { Modal } from "../components/Modal";
 import { NoQuestions } from "./../components/NoQuestionsMessage";
 import { Question } from "./../components/Question";
+import { Spinner } from "../components/Spinner";
 // Icons //
 import DeleteIcon from '../assets/delete.svg'
 import CheckIcon from '../assets/check.svg'
 import AnswerIcon from '../assets/answer.svg'
+import { FiLogOut } from "react-icons/fi";
 // SCSS //
 import '../styles/room.scss'
-import { useAuth } from "../hooks/useAuth";
-import { FiLogOut } from "react-icons/fi";
 
 type CodeProps = {
     id: string
@@ -25,8 +26,8 @@ type CodeProps = {
 export function AdminRoom() {
     const { id } = useParams<CodeProps>()
     const { push } = useHistory()
-    const { user, signOutWithGoogle } = useAuth()
-    const { questions, title } = useRoom(id)
+    const { user } = useAuth()
+    const { questions, title, isLoading } = useRoom(id)
 
     const [questionIdForModal, setQuestionIdForModal] = useState('')
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -61,10 +62,7 @@ export function AdminRoom() {
         }
     }
 
-    async function logOut(){
-        await signOutWithGoogle()
-        push('/admin/home')
-    }
+    if (isLoading) return <Spinner color='#FF59F8' size='72' speedMultiplier={0.5} />
 
     return (
         <div className='page-admin-room'>

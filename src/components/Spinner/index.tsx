@@ -9,6 +9,7 @@ export function Spinner(props: SpinnerProps) {
     return (
         <div id='spinner-container'>
             <SpinnerLoading {...props} />
+            <h2>Carregando...</h2>
         </div>
     )
 }

@@ -1,6 +1,8 @@
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
 // Context //
 import { AuthContextProvider } from './contexts/AuthContext'
+import { useTheme } from './hooks/useTheme';
+
 // Pages //
 import { AdminHome } from './pages/AdminHome'
 import { AdminRoom } from './pages/AdminRoom';
@@ -10,8 +12,10 @@ import { Landing } from './pages/Landing'
 import { Room } from './pages/Room';
 
 function App() {
+  const { themes } = useTheme()
+
   return (
-    <div className="App">
+    <div className={`${themes}`}>
       <BrowserRouter>
         <AuthContextProvider>
 

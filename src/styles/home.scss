@@ -1,10 +1,12 @@
 #page-container {
     width: 100vw;
-    max-width: 1440px;
     height: 100vh;
 
     display: flex;
     align-items: stretch;
+
+    background: var(--background);
+    color: var(--font);
 
     main {
         flex: 8;
@@ -24,6 +26,9 @@
 .main-content {
     width: 100%;
     max-width: 20rem;
+
+    background: var(--background);
+    color: var(--font);
 
     display: flex;
     flex-direction: column;
@@ -45,8 +50,8 @@
             height: 3rem;
             border-radius: 0.5rem;
             padding: 0 1rem;
-            background: #fff;
-            border: 1px solid #a8a8b3;
+            background: var(--input);
+            border: 1px solid var(--input-border);
             margin-bottom: 1rem;
 
             &::placeholder {
@@ -67,7 +72,7 @@
         align-items: center;
         margin: 2rem 0;
 
-        h2{
+        h2 {
             text-align: right;
         }
     }
@@ -75,10 +80,10 @@
     > span {
         font-size: 0.75rem;
         margin-top: 1rem;
-        color: #737380;
+        color: var(--legend);
 
         a {
-            color: #e559f9;
+            color: var(--pink-medium);
             margin-left: 0.5rem;
 
             transition: filter 0.2s;
@@ -186,8 +191,14 @@
     }
 }
 
-@media (max-width: 850px) { 
+@media (max-width: 850px) {
     .google-button {
         font-size: 0.75rem;
+    }
+}
+
+@media (min-width: 1440px) {
+    #page-container {
+        max-width: none;
     }
 }

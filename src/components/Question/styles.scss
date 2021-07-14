@@ -1,5 +1,5 @@
 .question-item {
-    background-color: #fefefe;
+    background: var(--acent);
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
     height: 9.75rem;
     width: 100%;
@@ -18,6 +18,8 @@
         -webkit-box-orient: vertical;
         line-height: 1.5rem;
         text-align: justify;
+
+        color: var(--text);
     }
 
     footer {
@@ -42,7 +44,7 @@
             &.like-button {
                 display: flex;
                 align-items: flex-end;
-                color: #737380;
+                color: var(--icon);
                 gap: 0.5rem;
 
                 &.liked {
@@ -78,10 +80,9 @@
     }
 
     span {
-        margin-left: 0.5rem;
         font-family: Roboto, sans-serif;
         font-size: 0.75rem;
-        color: #737380;
+        color: var(--text);
     }
 }
 
@@ -95,19 +96,24 @@
 
 .highlighted {
     border: 2px #835afd solid;
-    background-color: #f4f0ff;
+    background-color: var(--background-selected);
+
+    p, span {
+        color: var(--fontSelected);
+    }
 }
 
 .answered {
-    background-color: #dbdcdd;
+    background-color: var(--disabled);
 
     p,
     span {
-        color: #737380;
+        color: var(--text);
+        opacity: 0.4;
     }
 
     img {
-        opacity: 0.8;
+        opacity: 0.4;
     }
 }
 

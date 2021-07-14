@@ -1,5 +1,5 @@
 .clipboard {
-    background-color: #fff;
+    background-color: var(--background);
 
     div {
         background-color: #835afd;
@@ -21,7 +21,7 @@
         flex: 1;
         padding: 0 1rem 0 0.75rem;
         width: 15rem;
-        color: #000;
+        color: var(--font);
         font-size: 0.85rem;
         font-weight: 500;
     }

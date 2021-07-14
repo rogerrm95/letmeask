@@ -1,11 +1,15 @@
 import { FormEvent, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
-import { database } from '../services/firebase'
+import ClipboardSpinner from 'react-spinners/ClipLoader'
 import { useHistory } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth' // Hook //
+import { database } from '../services/firebase'
+ // Hooks //
+import { useAuth } from '../hooks/useAuth'
+import { useTheme } from '../hooks/useTheme'
 // Images & Icons //
 import { FiLogOut } from 'react-icons/fi'
 import LetMeAskImage from '../assets/logo.svg'
+import LetMeAskDarkImage from '../assets/logo-dark.svg'
 import GoogleIcon from '../assets/google-icon.svg'
 // Components //
 import { IlustrationAside } from './../components/IlustrationAside'
@@ -13,12 +17,11 @@ import { Button } from '../components/Button'
 
 import '../styles/home.scss' // CSS //
 
-import ClipboardSpinner from 'react-spinners/ClipLoader'
-
 export function Home() {
     const { push } = useHistory()
     const { user, signInWithGoogle, signOutWithGoogle, isLoading } = useAuth()
     const [code, setCode] = useState('')
+    const { toggleThemes, themes } = useTheme()
 
     async function handleLoginWithGoogle() {
         if (!user) {
@@ -55,7 +58,7 @@ export function Home() {
 
             <main>
                 <div className='main-content'>
-                    <img src={LetMeAskImage} alt="Logo LetMeAsk" onClick={() => push('/')} />
+                    <img src={themes === 'light' ? LetMeAskImage : LetMeAskDarkImage  } alt="Logo LetMeAsk" onClick={() => push('/')} />
 
                     {
                         !user ?
@@ -114,6 +117,10 @@ export function Home() {
                         </div>
                     )
                 }
+
+                <button type='button' onClick={toggleThemes}>
+                    Trocar
+                </button>
             </main>
             <Toaster position='top-center' />
         </div>

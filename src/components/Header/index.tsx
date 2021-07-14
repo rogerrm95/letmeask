@@ -1,8 +1,11 @@
 import { useParams, Link } from 'react-router-dom'
 
 import { Clipboard } from '../Clipboard' // Component //
-import LogoImage from '../../assets/logo.svg' // Image //
+// Image //
+import LetMeAskImage from '../../assets/logo.svg'
+import LetMeAskImageDark from '../../assets/logo-dark.svg'
 import './styles.scss' // CSS //
+import { useTheme } from '../../hooks/useTheme'
 
 type HeaderProps = {
     admin: boolean,
@@ -16,13 +19,15 @@ type CodeParams = {
 export function Header({ admin, closeRoom }: HeaderProps) {
 
     const { id } = useParams<CodeParams>()
+    const { themes } = useTheme()
+
     const roomCode = id
 
     return (
         <header className='page-header'>
             <div className="content">
                 <Link to='/'>
-                    <img src={LogoImage} alt="Logo LetMeAsk"/>
+                    <img src={themes === 'light' ? LetMeAskImage : LetMeAskImageDark} alt="Logo LetMeAsk" />
                 </Link>
 
                 <div>

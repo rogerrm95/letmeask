@@ -1,11 +1,14 @@
 import toast, { Toaster } from 'react-hot-toast'
 import ReactModal from 'react-modal'
 import { database } from '../../services/firebase'
+
 import { useHistory } from 'react-router-dom'
+import { useTheme } from '../../hooks/useTheme'
 
 import { FiXCircle } from 'react-icons/fi'
 
 import './styles.scss'
+import '../../styles/themes.scss'
 
 type ModalProps = {
     isModalOpen: boolean,
@@ -15,6 +18,7 @@ type ModalProps = {
 
 export function ModalClosedAtRoom({ isModalOpen, setIsModalOpen, roomId }: ModalProps) {
     const { push } = useHistory()
+    const { themes } = useTheme()
 
     async function handleCloseRoom() {
         try {
@@ -35,7 +39,10 @@ export function ModalClosedAtRoom({ isModalOpen, setIsModalOpen, roomId }: Modal
     }
 
     return (
-        <ReactModal isOpen={isModalOpen} className='Modal' overlayClassName='Overlay'>
+        <ReactModal
+            isOpen={isModalOpen}
+            className={`Modal ${themes}`}
+            overlayClassName='Overlay'>
 
             <FiXCircle size='64' color='#E73F5D' />
 

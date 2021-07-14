@@ -5,6 +5,7 @@ import { database } from '../../services/firebase'
 import { FiTrash } from 'react-icons/fi' // Icon //
 
 import './styles.scss' // SCSS //
+import { useTheme } from '../../hooks/useTheme'
 
 type ModalProps = {
     isModalOpen: boolean,
@@ -14,6 +15,7 @@ type ModalProps = {
 }
 
 export function ModalDeleteAnwser({ isModalOpen, setIsModalOpen, questionId, roomId }: ModalProps) {
+    const { themes } = useTheme()
 
     async function handleRemoveToQuestion() {
         try {
@@ -31,7 +33,10 @@ export function ModalDeleteAnwser({ isModalOpen, setIsModalOpen, questionId, roo
     }
 
     return (
-        <ReactModal isOpen={isModalOpen} className='Modal' overlayClassName='Overlay'>
+        <ReactModal isOpen={isModalOpen}
+            className={`Modal ${themes}`}
+            overlayClassName='Overlay'
+        >
 
             <FiTrash size='64' color='#E73F5D' />
 

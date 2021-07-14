@@ -15,7 +15,7 @@ function App() {
   const { themes } = useTheme()
 
   return (
-    <div className={`${themes}`}>
+    <div className={`${themes}`} style={{height: '100%'}}>
       <BrowserRouter>
         <AuthContextProvider>
 

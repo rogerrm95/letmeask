@@ -1,5 +1,7 @@
 .page-admin-room {
-    height: 100%;
+    height: inherit;
+    background: var(--background);
+    overflow-y: scroll;
 
     main {
         max-width: 800px;
@@ -22,7 +24,7 @@
 
     h2 {
         font-family: Poppins, sans-serif;
-        color: #29292e;
+        color: var(--font);
     }
 
     span {
@@ -51,11 +53,13 @@
         border-radius: 0.5rem;
         padding: 1rem;
 
-        background-color: #fefefe;
+        background: var(--input);
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 
+        color: var(--text);
+
         &::placeholder {
-            color: #737380;
+            color: var(--input-text);
             opacity: 0.7;
         }
     }
@@ -68,7 +72,7 @@
 
         > span {
             font-size: 0.75rem;
-            color: #737380;
+            color: var(--legend);
 
             button {
                 color: #835afd;
@@ -96,7 +100,7 @@
             > span {
                 font-weight: 500;
                 font-size: 0.85rem;
-                color: #29292e;
+                color: var(--legend);
             }
         }
     }

@@ -12,6 +12,7 @@ import { FiLogOut } from 'react-icons/fi'
 import LetMeAskImage from '../assets/logo.svg'
 
 import '../styles/home.scss' // CSS //
+import { SwitchButton } from '../components/SwitchButton'
 
 export function CreateRoom() {
     const { user } = useAuth()
@@ -67,6 +68,9 @@ export function CreateRoom() {
                         <Link to="/admin/home">Clique aqui</Link>
                     </span>
                 </div>
+
+                <SwitchButton />
+                
             </main>
         </div>
     )

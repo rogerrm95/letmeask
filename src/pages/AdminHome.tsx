@@ -14,6 +14,7 @@ import { Button } from '../components/Button'
 
 import '../styles/home.scss' // CSS //
 import { useTheme } from '../hooks/useTheme'
+import { SwitchButton } from '../components/SwitchButton'
 
 export function AdminHome() {
     const { push } = useHistory()
@@ -92,6 +93,9 @@ export function AdminHome() {
                         </div>
                     )
                 }
+
+                <SwitchButton />
+                
             </main>
             <Toaster position='top-center' />
         </div>

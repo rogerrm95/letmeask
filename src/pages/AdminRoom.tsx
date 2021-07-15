@@ -18,6 +18,7 @@ import AnswerIcon from '../assets/answer.svg'
 import { FiLogOut } from "react-icons/fi";
 // SCSS //
 import '../styles/room.scss'
+import { SwitchButton } from "../components/SwitchButton";
 
 type CodeProps = {
     id: string

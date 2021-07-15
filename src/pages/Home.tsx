@@ -16,6 +16,7 @@ import { IlustrationAside } from './../components/IlustrationAside'
 import { Button } from '../components/Button'
 
 import '../styles/home.scss' // CSS //
+import { SwitchButton } from '../components/SwitchButton'
 
 export function Home() {
     const { push } = useHistory()
@@ -118,9 +119,8 @@ export function Home() {
                     )
                 }
 
-                <button type='button' onClick={toggleThemes}>
-                    Trocar
-                </button>
+                <SwitchButton/>
+                
             </main>
             <Toaster position='top-center' />
         </div>

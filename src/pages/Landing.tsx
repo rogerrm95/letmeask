@@ -2,14 +2,13 @@ import { Link } from 'react-router-dom'
 
 import HeroImage from '../assets/heroImage.svg' // Image //
 
-import '../styles/landing.scss'
+import '../styles/landing.scss' // SCSS //
 
 export function Landing() {
     return (
         <div id='landing-page'>
             <main className='landing-content'>
                 <img src={HeroImage} alt="Imagem de uma garota com dúvida" />
-
                 <div>
                     <h1>
                         O lugar ideal para você retirar suas dúvidas sobre o mundo Front-End 💻

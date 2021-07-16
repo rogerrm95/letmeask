@@ -1,11 +1,11 @@
 import toast, { Toaster } from 'react-hot-toast'
 import ReactModal from 'react-modal'
 import { database } from '../../services/firebase'
+import { useTheme } from '../../hooks/useTheme'
 
 import { FiTrash } from 'react-icons/fi' // Icon //
 
 import './styles.scss' // SCSS //
-import { useTheme } from '../../hooks/useTheme'
 
 type ModalProps = {
     isModalOpen: boolean,

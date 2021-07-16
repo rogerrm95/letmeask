@@ -1,7 +1,7 @@
 import SpinnerLoading from 'react-spinners/ClipLoader'
 import { LoaderSizeProps } from 'react-spinners/interfaces'
 
-import './styles.scss'
+import './styles.scss' // CSS //
 
 type SpinnerProps = LoaderSizeProps
 

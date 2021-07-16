@@ -2,19 +2,20 @@ import { FormEvent, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { database } from '../services/firebase'
 import { useHistory } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth' // Hook //
+ // Hook //
+import { useAuth } from '../hooks/useAuth'
+import { useTheme } from '../hooks/useTheme'
 // Images & Icons //
 import { FiLogOut } from 'react-icons/fi'
 import LetMeAskImage from '../assets/logo.svg'
 import LetMeAskDarkImage from '../assets/logo-dark.svg'
 import GoogleIcon from '../assets/google-icon.svg'
 // Components //
-import { IlustrationAside } from '../components/IlustrationAside'
 import { Button } from '../components/Button'
+import { IlustrationAside } from '../components/IlustrationAside'
+import { Switcher } from '../components/Switcher'
 
 import '../styles/home.scss' // CSS //
-import { useTheme } from '../hooks/useTheme'
-import { SwitchButton } from '../components/SwitchButton'
 
 export function AdminHome() {
     const { push } = useHistory()
@@ -86,15 +87,15 @@ export function AdminHome() {
 
                 {
                     user && (
-                        <div id='logout-button' onClick={signOutWithGoogle}>
+                        <div id='logout-button'>
                             <span>
-                                Deseja trocar de conta? <button>Clique aqui</button>
+                                Deseja trocar de conta? <button onClick={signOutWithGoogle}>Clique aqui</button>
                             </span>
                         </div>
                     )
                 }
 
-                <SwitchButton />
+                <Switcher />
                 
             </main>
             <Toaster position='top-center' />

@@ -3,7 +3,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import ClipboardSpinner from 'react-spinners/ClipLoader'
 import { useHistory } from 'react-router-dom'
 import { database } from '../services/firebase'
- // Hooks //
+// Hooks //
 import { useAuth } from '../hooks/useAuth'
 import { useTheme } from '../hooks/useTheme'
 // Images & Icons //
@@ -12,17 +12,17 @@ import LetMeAskImage from '../assets/logo.svg'
 import LetMeAskDarkImage from '../assets/logo-dark.svg'
 import GoogleIcon from '../assets/google-icon.svg'
 // Components //
-import { IlustrationAside } from './../components/IlustrationAside'
 import { Button } from '../components/Button'
+import { IlustrationAside } from './../components/IlustrationAside'
+import { Switcher } from '../components/Switcher'
 
 import '../styles/home.scss' // CSS //
-import { SwitchButton } from '../components/SwitchButton'
 
 export function Home() {
     const { push } = useHistory()
     const { user, signInWithGoogle, signOutWithGoogle, isLoading } = useAuth()
     const [code, setCode] = useState('')
-    const { toggleThemes, themes } = useTheme()
+    const { themes } = useTheme()
 
     async function handleLoginWithGoogle() {
         if (!user) {
@@ -59,7 +59,7 @@ export function Home() {
 
             <main>
                 <div className='main-content'>
-                    <img src={themes === 'light' ? LetMeAskImage : LetMeAskDarkImage  } alt="Logo LetMeAsk" onClick={() => push('/')} />
+                    <img src={themes === 'light' ? LetMeAskImage : LetMeAskDarkImage} alt="Logo LetMeAsk" onClick={() => push('/')} />
 
                     {
                         !user ?
@@ -119,8 +119,8 @@ export function Home() {
                     )
                 }
 
-                <SwitchButton/>
-                
+                <Switcher />
+
             </main>
             <Toaster position='top-center' />
         </div>

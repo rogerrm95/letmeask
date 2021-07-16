@@ -1,12 +1,13 @@
 import toast, { Toaster } from 'react-hot-toast'
 import ReactModal from 'react-modal'
 import { database } from '../../services/firebase'
-
+// Hooks //
 import { useHistory } from 'react-router-dom'
 import { useTheme } from '../../hooks/useTheme'
 
-import { FiXCircle } from 'react-icons/fi'
+import { FiXCircle } from 'react-icons/fi' // Icon //
 
+ // CSS //
 import './styles.scss'
 import '../../styles/themes.scss'
 

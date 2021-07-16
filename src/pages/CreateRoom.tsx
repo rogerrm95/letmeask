@@ -1,18 +1,17 @@
 import { Link, useHistory } from 'react-router-dom'
 import { FormEvent, useState } from 'react'
 import { database } from '../services/firebase'
-
 import { useAuth } from '../hooks/useAuth' // Hook //
 // Components //
-import { IlustrationAside } from './../components/IlustrationAside'
 import { Button } from '../components/Button'
+import { IlustrationAside } from './../components/IlustrationAside'
+import { Switcher } from '../components/Switcher'
 
 // Icon & Image //
 import { FiLogOut } from 'react-icons/fi'
 import LetMeAskImage from '../assets/logo.svg'
 
 import '../styles/home.scss' // CSS //
-import { SwitchButton } from '../components/SwitchButton'
 
 export function CreateRoom() {
     const { user } = useAuth()
@@ -69,7 +68,7 @@ export function CreateRoom() {
                     </span>
                 </div>
 
-                <SwitchButton />
+                <Switcher />
                 
             </main>
         </div>

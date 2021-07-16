@@ -1,11 +1,11 @@
 import { useParams, Link } from 'react-router-dom'
-
+import { useTheme } from '../../hooks/useTheme' // Hook //
 import { Clipboard } from '../Clipboard' // Component //
 // Image //
 import LetMeAskImage from '../../assets/logo.svg'
 import LetMeAskImageDark from '../../assets/logo-dark.svg'
+
 import './styles.scss' // CSS //
-import { useTheme } from '../../hooks/useTheme'
 
 type HeaderProps = {
     admin: boolean,
@@ -32,8 +32,10 @@ export function Header({ admin, closeRoom }: HeaderProps) {
 
                 <div>
                     <Clipboard code={roomCode} />
-
-                    {admin && <button className='close-room-button' onClick={closeRoom}>Encerrar Sala</button>}
+                    {admin && <button className='close-room-button' onClick={closeRoom}>
+                        Encerrar Sala
+                    </button>
+                    }
                 </div>
             </div>
         </header>

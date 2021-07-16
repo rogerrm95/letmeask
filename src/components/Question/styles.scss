@@ -118,7 +118,31 @@
 }
 
 // Media Queries //
+@media (max-width: 1000px) {
+    .question-item {
+        max-width: 93.75%;
+    }
+
+    .user-info {
+        span {
+            font-size: 1rem;
+        }
+    }
+}
+
 @media (max-width: 800px) {
+    .question-item {
+        max-width: 93%;
+    }
+
+    .user-info {
+        span {
+            font-size: 1rem;
+        }
+    }
+}
+
+@media (max-width: 600px) {
     .question-item {
         max-width: 100%;
     }

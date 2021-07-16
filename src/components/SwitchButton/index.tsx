@@ -1,36 +1,23 @@
-import { useTheme } from '../../hooks/useTheme'
+import { ReactNode } from 'react'
 
-import ReactSwitchButton from 'react-switch'
+import './styles.scss' // CSS //
 
-import MoonIcon from '../../assets/moon.svg'
-import SunIcon from '../../assets/sun.svg'
+type SwitchButtonProps = {
+    children: ReactNode,
+    handleOnClick?: () => void
+}
 
-import './styles.scss'
-
-export function SwitchButton() {
-    const { themes, toggleThemes } = useTheme()
-
+export function SwitchButton({ handleOnClick, children }: SwitchButtonProps) {
     return (
-        <div id='switcher-container'>
-            <span className={themes !== 'light' ? "disabled" : ''}>
-                <img src={SunIcon} alt="" />
-            </span>
+        <button
+            id='switch-button-container'
+            type='button'
+            onClick={handleOnClick}>
 
-            <ReactSwitchButton
-                height={20}
-                width={42}
-                checked={themes === 'light' ? false : true} handleDiameter={28} offHandleColor='#835AFD'
-                onColor='#835AFD'
-                checkedIcon={false}
-                uncheckedIcon={false}
-                onChange={toggleThemes}
-                borderRadius={16}
-                className='switch-button'
-            />
+                {
+                    children
+                }
 
-            <span className={themes !== 'dark' ? "disabled" : ''}>
-                <img src={MoonIcon} alt="" />
-            </span>
-        </div>
+        </button>
     )
 }

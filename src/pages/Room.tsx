@@ -12,9 +12,11 @@ import { NoQuestions } from "./../components/NoQuestionsMessage";
 import { Question } from "./../components/Question";
 import { Spinner } from "../components/Spinner";
 
-import { FiLogOut } from 'react-icons/fi' // Icon //
+import { FiSun, FiMoon, FiLogOut } from 'react-icons/fi' // Icons //
 
 import '../styles/room.scss' // CSS //
+import { SwitchButton } from "../components/SwitchButton";
+import { useTheme } from "../hooks/useTheme";
 
 type RoomCodeProps = {
     id: string
@@ -24,6 +26,7 @@ export function Room() {
     const { id } = useParams<RoomCodeProps>()
     const { user, signOutWithGoogle, signInWithGoogle } = useAuth()
     const { title, questions, isLoading } = useRoom(id)
+    const { themes, toggleThemes } = useTheme()
 
     const [newQuestion, setNewQuestion] = useState('')
 
@@ -146,13 +149,24 @@ export function Room() {
                 }
             </main>
 
-            {
-                user && (
-                    <button className='button-logout' type='button' onClick={signOutWithGoogle}>
-                        <FiLogOut size='20' />
-                    </button>
-                )
-            }
+            <footer className='footer-container'>
+
+                <SwitchButton handleOnClick={toggleThemes}>
+                    {
+                        themes === 'light' ? <FiSun size='24' color='#FFF' /> : <FiMoon size='24' color='#FFF' />
+                    }
+                </SwitchButton>
+
+                {
+                    user && (
+
+                        <button className='danger-button' type='button' onClick={signOutWithGoogle}>
+                            <FiLogOut size='24' />
+                        </button>
+
+                    )
+                }
+            </footer>
 
             <Toaster position='top-center' />
         </div>

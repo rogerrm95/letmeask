@@ -76,23 +76,6 @@
             text-align: right;
         }
     }
-
-    > span {
-        font-size: 0.75rem;
-        margin-top: 1rem;
-        color: var(--legend);
-
-        a {
-            color: var(--pink-medium);
-            margin-left: 0.5rem;
-
-            transition: filter 0.2s;
-
-            &:hover {
-                filter: brightness(0.8);
-            }
-        }
-    }
 }
 
 .google-button {
@@ -152,7 +135,6 @@
 
     span {
         font-size: 0.75rem;
-        margin-top: 1rem;
         color: #737380;
 
         button {
@@ -175,6 +157,12 @@
     }
 }
 
+@media (max-width: 850px) {
+    .google-button {
+        font-size: 0.75rem;
+    }
+}
+
 @media (max-width: 700px) {
     #page-container {
         aside {
@@ -189,11 +177,15 @@
             font-size: 1rem;
         }
     }
-}
 
-@media (max-width: 850px) {
-    .google-button {
-        font-size: 0.75rem;
+    #logout-button {
+        span {
+            font-size: 1rem;
+
+            button {
+                font-size: inherit;
+            }
+        }
     }
 }
 

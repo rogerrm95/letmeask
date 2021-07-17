@@ -76,6 +76,23 @@
             text-align: right;
         }
     }
+
+    > span {
+        font-size: 0.75rem;
+        margin-top: 1rem;
+        color: var(--legend);
+
+        a {
+            color: var(--pink-medium);
+            margin-left: 0.5rem;
+
+            transition: filter 0.2s;
+
+            &:hover {
+                filter: brightness(0.8);
+            }
+        }
+    }
 }
 
 .google-button {

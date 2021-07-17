@@ -15,10 +15,11 @@
     p {
         font-family: Poppins, sans-serif;
         font-weight: 700;
+        color: var(--font);
     }
 
     span {
-        color: #737380;
+        color: var(--legend);
         max-width: 250px;
         font-size: 0.75rem;
         text-align: center;

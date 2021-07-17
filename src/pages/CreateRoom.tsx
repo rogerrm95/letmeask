@@ -1,7 +1,9 @@
 import { Link, useHistory } from 'react-router-dom'
 import { FormEvent, useState } from 'react'
 import { database } from '../services/firebase'
-import { useAuth } from '../hooks/useAuth' // Hook //
+ // Hook //
+import { useAuth } from '../hooks/useAuth'
+import { useTheme } from '../hooks/useTheme'
 // Components //
 import { Button } from '../components/Button'
 import { IlustrationAside } from './../components/IlustrationAside'
@@ -10,6 +12,7 @@ import { Switcher } from '../components/Switcher'
 // Icon & Image //
 import { FiLogOut } from 'react-icons/fi'
 import LetMeAskImage from '../assets/logo.svg'
+import LetMeAskDarkImage from '../assets/logo-dark.svg'
 
 import '../styles/home.scss' // CSS //
 
@@ -18,6 +21,7 @@ export function CreateRoom() {
     const { push } = useHistory()
 
     const [newRoom, setNewRoom] = useState('')
+    const {themes} = useTheme()
 
     async function handleCreateRoom(event: FormEvent) {
         event.preventDefault()
@@ -44,7 +48,7 @@ export function CreateRoom() {
 
             <main>
                 <div className='main-content'>
-                    <img src={LetMeAskImage} alt="Logo LetMeAsk" />
+                    <img src={themes === 'light' ? LetMeAskImage : LetMeAskDarkImage} alt="Logo LetMeAsk" />
 
                     <h2>Crie uma nova sala</h2>
 

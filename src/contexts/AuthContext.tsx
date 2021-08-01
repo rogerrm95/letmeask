@@ -26,30 +26,26 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
-        if (user) {
-            const unsubscribe = auth.onAuthStateChanged(user => {
-                if (user) {
-                    const { displayName, photoURL, uid } = user
+        const unsubscribe = auth.onAuthStateChanged(user => {
+            if (user) {
+                const { displayName, photoURL, uid } = user
 
-                    if (!displayName || !photoURL) {
-                        throw new Error('Error, photo or name is missing')
-                    }
-
-                    setUser({
-                        id: uid,
-                        name: displayName,
-                        avatar: photoURL
-                    })
-
-                    console.log("ERRO AQUI")
+                if (!displayName || !photoURL) {
+                    throw new Error('Error, photo or name is missing')
                 }
-            })
 
-            return () => {
-                unsubscribe();
+                setUser({
+                    id: uid,
+                    name: displayName,
+                    avatar: photoURL
+                })
             }
+        })
+
+        return () => {
+            unsubscribe();
         }
-    }, [user])
+    }, [])
 
     async function signInWithGoogle() {
         try {

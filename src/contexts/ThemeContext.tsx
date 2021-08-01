@@ -21,7 +21,7 @@ export function ThemeContextProvider({ children }: ThemeContextProviderProps) {
           return themeSaved;
         }
     
-        return ''
+        return 'light'
       })
 
     useEffect(() => {

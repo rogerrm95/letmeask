@@ -2,7 +2,8 @@ import { FormEvent, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { database } from '../services/firebase'
 import { useHistory } from 'react-router-dom'
- // Hook //
+import ClipboardSpinner from 'react-spinners/ClipLoader'
+// Hook //
 import { useAuth } from '../hooks/useAuth'
 import { useTheme } from '../hooks/useTheme'
 // Images & Icons //
@@ -13,13 +14,13 @@ import GoogleIcon from '../assets/google-icon.svg'
 // Components //
 import { Button } from '../components/Button'
 import { IlustrationAside } from '../components/IlustrationAside'
-import { Switcher } from '../components/Switcher'
+import { HomeHeader } from '../components/HomeHeader'
 
 import '../styles/home.scss' // CSS //
 
 export function AdminHome() {
     const { push } = useHistory()
-    const { user, signInWithGoogle, signOutWithGoogle } = useAuth()
+    const { isLoading, user, signInWithGoogle, signOutWithGoogle } = useAuth()
     const [code, setCode] = useState('')
     const { themes } = useTheme()
 
@@ -54,17 +55,25 @@ export function AdminHome() {
         <div id='page-container'>
             <IlustrationAside
                 title='Toda pergunta tem uma resposta.'
-                description='Aprenda e compartilhe conhecimento com outras pessoas'
-            />
-
+                description='Aprenda e compartilhe conhecimento com outras pessoas' />
             <main>
-                <div className='main-content'>
+                <HomeHeader redirectTo='/' />
+
+                <section className='content-container'>
                     <img src={themes === 'light' ? LetMeAskImage : LetMeAskDarkImage} alt="Logo LetMeAsk" onClick={() => push('/')} />
 
                     <button className='google-button' onClick={handleCreateRoom}>
-                        <img src={GoogleIcon} alt="Logo da Google" />
                         {
-                            user ? 'Crie sua sala com o Google' : 'Entrar com a conta Google'
+                            isLoading ?
+                                (
+                                    <ClipboardSpinner color='white' />
+                                ) :
+                                (
+                                    <>
+                                        <img src={GoogleIcon} alt="Logo da Google" />
+                                        {user ? 'Criar sala com o Google' : 'Entrar com a conta Google'}
+                                    </>
+                                )
                         }
                     </button>
 
@@ -83,20 +92,16 @@ export function AdminHome() {
                             Entrar
                         </Button>
                     </form>
-                </div>
-
-                {
-                    user && (
-                        <div id='logout-button'>
-                            <span>
-                                Deseja trocar de conta? <button onClick={signOutWithGoogle}>Clique aqui</button>
-                            </span>
-                        </div>
-                    )
-                }
-
-                <Switcher />
-                
+                    {
+                        !!user && (
+                            <div id='logout-button'>
+                                <span>
+                                    Deseja trocar de conta? <button onClick={signOutWithGoogle}>Clique aqui</button>
+                                </span>
+                            </div>
+                        )
+                    }
+                </section>
             </main>
             <Toaster position='top-center' />
         </div>

@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast'
 import ClipboardSpinner from 'react-spinners/ClipLoader'
-import { useHistory } from 'react-router-dom'
 import { database } from '../services/firebase'
 // Hooks //
 import { useAuth } from '../hooks/useAuth'
@@ -14,9 +14,9 @@ import GoogleIcon from '../assets/google-icon.svg'
 // Components //
 import { Button } from '../components/Button'
 import { IlustrationAside } from './../components/IlustrationAside'
-import { Switcher } from '../components/Switcher'
 
 import '../styles/home.scss' // CSS //
+import { HomeHeader } from '../components/HomeHeader'
 
 export function Home() {
     const { push } = useHistory()
@@ -54,13 +54,13 @@ export function Home() {
         <div id='page-container'>
             <IlustrationAside
                 title='Toda pergunta tem uma resposta.'
-                description='Aprenda e compartilhe conhecimento com outras pessoas'
-            />
+                description='Aprenda e compartilhe conhecimento com outras pessoas' />
 
             <main>
-                <div className='main-content'>
-                    <img src={themes === 'light' ? LetMeAskImage : LetMeAskDarkImage} alt="Logo LetMeAsk" onClick={() => push('/')} />
+                <HomeHeader redirectTo='/' />
 
+                <section className='content-container'>
+                    <img src={themes === 'light' ? LetMeAskImage : LetMeAskDarkImage} alt="Logo LetMeAsk" onClick={() => push('/')} />
                     {
                         !user ?
                             (
@@ -107,20 +107,16 @@ export function Home() {
                             Entrar
                         </Button>
                     </form>
-                </div>
-
-                {
-                    user && (
-                        <div id='logout-button' onClick={signOutWithGoogle}>
-                            <span>
-                                Deseja trocar de conta? <button>Clique aqui</button>
-                            </span>
-                        </div>
-                    )
-                }
-
-                <Switcher />
-
+                    {
+                        !!user && (
+                            <div id='logout-button'>
+                                <span>
+                                    Deseja trocar de conta? <button onClick={signOutWithGoogle}>Clique aqui</button>
+                                </span>
+                            </div>
+                        )
+                    }
+                </section>
             </main>
             <Toaster position='top-center' />
         </div>

@@ -8,30 +8,32 @@
     background: var(--background);
     color: var(--font);
 
-    main {
-        flex: 8;
-        padding: 0 2rem;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
     aside {
         flex: 7;
     }
+
+    main {
+        flex: 8;
+        padding: 0 0.5rem;
+
+        display: flex;
+        flex-direction: column;
+    }
+
 }
 
-.main-content {
+.content-container {
     width: 100%;
+    flex: 1;
     max-width: 20rem;
+    align-self: center;
 
     background: var(--background);
     color: var(--font);
 
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: stretch;
     text-align: center;
 

@@ -7,7 +7,6 @@ import { useTheme } from '../hooks/useTheme'
 // Components //
 import { Button } from '../components/Button'
 import { IlustrationAside } from './../components/IlustrationAside'
-import { Switcher } from '../components/Switcher'
 
 // Icon & Image //
 import { FiLogOut } from 'react-icons/fi'
@@ -15,6 +14,7 @@ import LetMeAskImage from '../assets/logo.svg'
 import LetMeAskDarkImage from '../assets/logo-dark.svg'
 
 import '../styles/home.scss' // CSS //
+import { HomeHeader } from '../components/HomeHeader'
 
 export function CreateRoom() {
     const { user } = useAuth()
@@ -47,7 +47,9 @@ export function CreateRoom() {
             />
 
             <main>
-                <div className='main-content'>
+                <HomeHeader redirectTo='/admin/home'/>
+
+                <section className='content-container'>
                     <img src={themes === 'light' ? LetMeAskImage : LetMeAskDarkImage} alt="Logo LetMeAsk" />
 
                     <h2>Crie uma nova sala</h2>
@@ -70,10 +72,7 @@ export function CreateRoom() {
                         Quer entrar em uma sala já existente?
                         <Link to="/admin/home">Clique aqui</Link>
                     </span>
-                </div>
-
-                <Switcher />
-                
+                </section>               
             </main>
         </div>
     )

@@ -1,11 +1,9 @@
-.Modal {
-    max-width: 900px;
-    position: absolute;
-    top: 25%;
-    left: 20%;
-    right: 20%;
-    bottom: 25%;
-    background: var(--acent);
+import styled from 'styled-components'
+
+export const ModalContainer = styled.div`
+    height: 100%;
+    width: 100%;
+    background: ${props => props.theme.colors.acent};
 
     border-radius: 0.5rem;
 
@@ -15,7 +13,7 @@
     justify-content: center;
 
     h1 {
-        color: var(--font);
+        color: ${props => props.theme.colors.primaryText};
         font-family: "Poppins", sans-serif;
         font-size: 1.5rem;
         text-align: center;
@@ -23,7 +21,7 @@
     }
 
     span {
-        color: var(--text);
+        color: ${props => props.theme.colors.secundaryText};
         font-weight: 400;
         text-align: center;
         margin-bottom: 2.5rem;
@@ -62,36 +60,4 @@
             background-color: #e73f5d;
         }
     }
-}
-
-.Overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #05020680;
-}
-
-// Media Queries //
-@media (max-width: 600px) {
-    .Modal {
-        top: 10%;
-        left: 10%;
-        right: 10%;
-        bottom: 10%;
-        gap: 1rem;
-
-        h1 {
-            font-size: 2rem;
-        }
-    }
-
-    .modal-button-group {
-        flex-direction: column;
-
-        button:first-child {
-            margin-bottom: 1rem;
-        }
-    }
-}
+`

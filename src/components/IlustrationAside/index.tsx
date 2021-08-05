@@ -1,5 +1,5 @@
 import AskQuestionImage from '../../assets/illustration.svg' // Image //
-import './styles.scss' // CSS //
+import { AsideContainer } from './styles' // CSS //
 
 type IlustrationAsideProps = {
     title: string,
@@ -8,10 +8,10 @@ type IlustrationAsideProps = {
 
 export function IlustrationAside({ title, description }: IlustrationAsideProps) {
     return (
-        <aside>
+        <AsideContainer>
             <img src={AskQuestionImage} alt="Imagem de perguntas e respostas" />
             <p>{title}</p>
             <span>{description}</span>
-        </aside>
+        </AsideContainer>
     )
 }

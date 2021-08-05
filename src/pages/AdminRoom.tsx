@@ -30,7 +30,7 @@ export function AdminRoom() {
     const { push } = useHistory()
     const { user } = useAuth()
     const { questions, title, isLoading } = useRoom(id)
-    const { themes, toggleThemes } = useTheme()
+    const { themeMode, toggleThemes } = useTheme()
 
     const [questionIdForModal, setQuestionIdForModal] = useState('')
     const [isModalForClosedAtRoom, setIsModalForClosedAtRoom] = useState(false)
@@ -112,7 +112,7 @@ export function AdminRoom() {
             <footer className='footer-container'>
                 <SwitchButton handleOnClick={toggleThemes}>
                     {
-                        themes === 'light' ? <FiSun size='24' color='#FFF' /> : <FiMoon size='24' color='#FFF' />
+                        themeMode === 'light' ? <FiSun size='24' color='#FFF' /> : <FiMoon size='24' color='#FFF' />
                     }
                 </SwitchButton>
 

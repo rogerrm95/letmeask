@@ -1,7 +1,8 @@
-aside {
-    flex: 7;
+import styled from 'styled-components'
 
-    background: var(--purple-dark);
+export const AsideContainer = styled.aside`
+    flex: 7;
+    background: ${props => props.theme.colors.primaryDark};
     color: #fff;
 
     display: flex;
@@ -28,17 +29,17 @@ aside {
         color: #f8f8f8;
         opacity: 0.8;
     }
-}
 
-// Media Queries //
-@media (max-width: 1150px) {
-    aside {
-        p {
-            max-width: 100%;
-        }
+    // Media Queries //
+    @media (max-width: 1150px) {
+        & {
+            p {
+                max-width: 100%;
+            }
 
-        span {
-            max-width: 100%;
+            span {
+                max-width: 100%;
+            }
         }
     }
-}
+`

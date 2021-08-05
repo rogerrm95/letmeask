@@ -21,7 +21,7 @@ export function CreateRoom() {
     const { push } = useHistory()
 
     const [newRoom, setNewRoom] = useState('')
-    const {themes} = useTheme()
+    const {themeMode} = useTheme()
 
     async function handleCreateRoom(event: FormEvent) {
         event.preventDefault()
@@ -50,7 +50,7 @@ export function CreateRoom() {
                 <HomeHeader redirectTo='/admin/home'/>
 
                 <section className='content-container'>
-                    <img src={themes === 'light' ? LetMeAskImage : LetMeAskDarkImage} alt="Logo LetMeAsk" />
+                    <img src={themeMode === 'light' ? LetMeAskImage : LetMeAskDarkImage} alt="Logo LetMeAsk" />
 
                     <h2>Crie uma nova sala</h2>
 

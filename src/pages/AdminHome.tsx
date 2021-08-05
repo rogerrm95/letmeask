@@ -22,7 +22,7 @@ export function AdminHome() {
     const { push } = useHistory()
     const { isLoading, user, signInWithGoogle, signOutWithGoogle } = useAuth()
     const [code, setCode] = useState('')
-    const { themes } = useTheme()
+    const { themeMode } = useTheme()
 
     async function handleCreateRoom() {
         if (!user) {
@@ -60,7 +60,7 @@ export function AdminHome() {
                 <HomeHeader redirectTo='/' />
 
                 <section className='content-container'>
-                    <img src={themes === 'light' ? LetMeAskImage : LetMeAskDarkImage} alt="Logo LetMeAsk" onClick={() => push('/')} />
+                    <img src={themeMode === 'light' ? LetMeAskImage : LetMeAskDarkImage} alt="Logo LetMeAsk" onClick={() => push('/')} />
 
                     <button className='google-button' onClick={handleCreateRoom}>
                         {

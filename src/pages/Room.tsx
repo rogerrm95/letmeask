@@ -26,7 +26,7 @@ export function Room() {
     const { id } = useParams<RoomCodeProps>()
     const { user, signOutWithGoogle, signInWithGoogle } = useAuth()
     const { title, questions, isLoading } = useRoom(id)
-    const { themes, toggleThemes } = useTheme()
+    const { themeMode, toggleThemes } = useTheme()
 
     const [newQuestion, setNewQuestion] = useState('')
 
@@ -153,7 +153,7 @@ export function Room() {
 
                 <SwitchButton handleOnClick={toggleThemes}>
                     {
-                        themes === 'light' ? <FiSun size='24' color='#FFF' /> : <FiMoon size='24' color='#FFF' />
+                        themeMode === 'light' ? <FiSun size='24' color='#FFF' /> : <FiMoon size='24' color='#FFF' />
                     }
                 </SwitchButton>
 

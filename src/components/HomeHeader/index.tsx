@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import { FiArrowLeft } from "react-icons/fi"; // Icon //
 import { Switcher } from "../Switcher"; // Component //
-import './styles.scss'
+import { HeaderContainer } from './styles'
 
 type HomeHeaderProps = {
     redirectTo: string
@@ -10,11 +10,11 @@ type HomeHeaderProps = {
 
 export function HomeHeader({ redirectTo }: HomeHeaderProps) {
     return (
-        <header className='header-container'>
+        <HeaderContainer className='header-container'>
             <Link to={redirectTo} >
                 <FiArrowLeft size={20} color="#835AFD" />
             </Link>
             <Switcher />
-        </header>
+        </HeaderContainer>
     )
 }

@@ -6,6 +6,7 @@ import { useAuth } from '../hooks/useAuth'
 import { useTheme } from '../hooks/useTheme'
 // Components //
 import { Button } from '../components/Button'
+import { HomeHeader } from '../components/HomeHeader'
 import { IlustrationAside } from './../components/IlustrationAside'
 
 // Icon & Image //
@@ -13,15 +14,14 @@ import { FiLogOut } from 'react-icons/fi'
 import LetMeAskImage from '../assets/logo.svg'
 import LetMeAskDarkImage from '../assets/logo-dark.svg'
 
-import '../styles/home.scss' // CSS //
-import { HomeHeader } from '../components/HomeHeader'
+import {HomeContainer, ContentBox} from '../styles/home' // CSS //
 
 export function CreateRoom() {
     const { user } = useAuth()
     const { push } = useHistory()
 
     const [newRoom, setNewRoom] = useState('')
-    const {themes} = useTheme()
+    const {themeMode} = useTheme()
 
     async function handleCreateRoom(event: FormEvent) {
         event.preventDefault()
@@ -40,7 +40,7 @@ export function CreateRoom() {
     }
 
     return (
-        <div id='page-container'>
+        <HomeContainer>
             <IlustrationAside
                 title='Crie salas de Q&amp;A ao vivo'
                 description='Tire as dúvidas da sua audiência em tempo-real'
@@ -49,8 +49,8 @@ export function CreateRoom() {
             <main>
                 <HomeHeader redirectTo='/admin/home'/>
 
-                <section className='content-container'>
-                    <img src={themes === 'light' ? LetMeAskImage : LetMeAskDarkImage} alt="Logo LetMeAsk" />
+                <ContentBox>
+                    <img src={themeMode === 'light' ? LetMeAskImage : LetMeAskDarkImage} alt="Logo LetMeAsk" />
 
                     <h2>Crie uma nova sala</h2>
 
@@ -72,8 +72,10 @@ export function CreateRoom() {
                         Quer entrar em uma sala já existente?
                         <Link to="/admin/home">Clique aqui</Link>
                     </span>
-                </section>               
+                </ContentBox>               
             </main>
-        </div>
+        </HomeContainer>
     )
 }
+
+// #6F4BD8 ; #e559f9

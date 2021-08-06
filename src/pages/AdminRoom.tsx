@@ -19,7 +19,7 @@ import CheckIcon from '../assets/check.svg'
 import AnswerIcon from '../assets/answer.svg'
 import { FiSun, FiMoon, FiLogOut } from 'react-icons/fi'
 
-import '../styles/room.scss' // SCSS //
+import {RoomContainer, Header as HeaderRoom, ActionsButtons} from '../styles/room' // SCSS //
 
 type CodeProps = {
     id: string
@@ -30,7 +30,7 @@ export function AdminRoom() {
     const { push } = useHistory()
     const { user } = useAuth()
     const { questions, title, isLoading } = useRoom(id)
-    const { themes, toggleThemes } = useTheme()
+    const { themeMode, toggleThemes } = useTheme()
 
     const [questionIdForModal, setQuestionIdForModal] = useState('')
     const [isModalForClosedAtRoom, setIsModalForClosedAtRoom] = useState(false)
@@ -60,14 +60,14 @@ export function AdminRoom() {
     if (isLoading) return <Spinner color='#FF59F8' size='72' speedMultiplier={0.5} />
 
     return (
-        <div className='page-admin-room'>
+        <RoomContainer>
             <Header admin closeRoom={() => openModalForClosedAtRoom()} />
 
             <main>
-                <div className='admin-room-head'>
+                <HeaderRoom>
                     <h2>{title}</h2>
                     {questions.length > 0 && <span>{questions.length} - pergunta(s)</span>}
-                </div>
+                </HeaderRoom>
 
                 {
                     questions.length > 0 ?
@@ -109,10 +109,10 @@ export function AdminRoom() {
                 }
             </main>
 
-            <footer className='footer-container'>
+            <ActionsButtons>
                 <SwitchButton handleOnClick={toggleThemes}>
                     {
-                        themes === 'light' ? <FiSun size='24' color='#FFF' /> : <FiMoon size='24' color='#FFF' />
+                        themeMode === 'light' ? <FiSun size='24' color='#FFF' /> : <FiMoon size='24' color='#FFF' />
                     }
                 </SwitchButton>
 
@@ -124,7 +124,7 @@ export function AdminRoom() {
                         </button>
                     )
                 }
-            </footer>
+            </ActionsButtons>
 
             <ModalDeleteAnwser
                 setIsModalOpen={setIsModalDeleteToAnwserOpen}
@@ -137,6 +137,6 @@ export function AdminRoom() {
                 isModalOpen={isModalForClosedAtRoom}
                 roomId={id}
             />
-        </div>
+        </RoomContainer>
     )
 }

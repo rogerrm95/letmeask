@@ -1,6 +1,5 @@
 import { ReactNode } from 'react'
-
-import './styles.scss' // CSS //
+import { SwitchButtonContainer } from './styles'
 
 type SwitchButtonProps = {
     children: ReactNode,
@@ -9,15 +8,12 @@ type SwitchButtonProps = {
 
 export function SwitchButton({ handleOnClick, children }: SwitchButtonProps) {
     return (
-        <button
-            id='switch-button-container'
+        <SwitchButtonContainer
             type='button'
             onClick={handleOnClick}>
-
                 {
                     children
                 }
-
-        </button>
+        </SwitchButtonContainer>
     )
 }

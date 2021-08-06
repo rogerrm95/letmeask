@@ -1,24 +1,22 @@
-import { HTMLAttributes } from 'react'
-
 import copyImage from '../../assets/copy.svg' // Icon //
-import './styles.scss' // CSS //
+import { ClipboardContainer } from './styles' // CSS //
 
-interface ClipboardProps extends HTMLAttributes<HTMLButtonElement> {
-    code: string 
+interface ClipboardProps  {
+    code: string
 }
 
-export function Clipboard({ code , ...rest }: ClipboardProps) {
+export function Clipboard({ code }: ClipboardProps) {
 
     function copyRoomCodeToClipboard() {
         code && navigator.clipboard.writeText(code)
     }
 
     return (
-        <button className='clipboard' {...rest} onClick={copyRoomCodeToClipboard}>
+        <ClipboardContainer className='clipboard' onClick={copyRoomCodeToClipboard}>
             <div>
                 <img src={copyImage} alt="Copiar código" />
             </div>
             <span>Código {code}</span>
-        </button>
+        </ClipboardContainer>
     )
 }

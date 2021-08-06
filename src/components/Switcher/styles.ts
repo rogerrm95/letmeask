@@ -1,4 +1,6 @@
-#switcher-container {
+import styled from "styled-components";
+
+export const SwitcherContainer = styled.div`
     position: absolute;
     left: 50%;
     right: 50%;
@@ -14,4 +16,4 @@
     .disabled {
         opacity: 0.2;
     }
-}
+`

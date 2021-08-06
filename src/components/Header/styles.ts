@@ -1,4 +1,6 @@
-.page-header {
+import styled from 'styled-components'
+
+export const HeaderContainer = styled.header`
     padding: 1.5rem;
     border-bottom: 1px solid #e2e2e2;
 
@@ -24,7 +26,7 @@
             button {
                 height: 3rem;
                 border-radius: 0.5rem;
-                border: 1px solid var(--button-primary);
+                border: 1px solid ${props => props.theme.colors.primary};
                 cursor: pointer;
                 overflow: hidden;
 
@@ -34,17 +36,16 @@
             }
 
             .close-room-button {
-                background-color: var(--background);
-                color: #835afd;
+                background-color: ${props => props.theme.colors.primary};
+                color: #FFF;
                 padding: 0 12px;
 
-                transition: background-color 0.5s, color 0.4s;
+                transition: filter 0.5s, color 0.4s;
 
                 &:hover {
-                    background-color: #835afd;
-                    color: #fff;
+                    filter: brightness(0.8)
                 }
             }
         }
     }
-}
+`

@@ -16,13 +16,13 @@ import { Button } from '../components/Button'
 import { IlustrationAside } from '../components/IlustrationAside'
 import { HomeHeader } from '../components/HomeHeader'
 
-import '../styles/home.scss' // CSS //
+import {HomeContainer, ContentBox, GoogleButton, CustomDivider, LogoutButton} from '../styles/home'
 
 export function AdminHome() {
     const { push } = useHistory()
     const { isLoading, user, signInWithGoogle, signOutWithGoogle } = useAuth()
     const [code, setCode] = useState('')
-    const { themes } = useTheme()
+    const { themeMode } = useTheme()
 
     async function handleCreateRoom() {
         if (!user) {
@@ -52,17 +52,17 @@ export function AdminHome() {
     }
 
     return (
-        <div id='page-container'>
+        <HomeContainer>
             <IlustrationAside
                 title='Toda pergunta tem uma resposta.'
                 description='Aprenda e compartilhe conhecimento com outras pessoas' />
             <main>
                 <HomeHeader redirectTo='/' />
 
-                <section className='content-container'>
-                    <img src={themes === 'light' ? LetMeAskImage : LetMeAskDarkImage} alt="Logo LetMeAsk" onClick={() => push('/')} />
+                <ContentBox >
+                    <img src={themeMode === 'light' ? LetMeAskImage : LetMeAskDarkImage} alt="Logo LetMeAsk" onClick={() => push('/')} />
 
-                    <button className='google-button' onClick={handleCreateRoom}>
+                    <GoogleButton onClick={handleCreateRoom}>
                         {
                             isLoading ?
                                 (
@@ -75,9 +75,9 @@ export function AdminHome() {
                                     </>
                                 )
                         }
-                    </button>
+                    </GoogleButton>
 
-                    <span className='custom-divider'>Ou entre em uma sala</span>
+                    <CustomDivider>Ou entre em uma sala</CustomDivider>
 
                     <form action="submit" onSubmit={(event) => handleJoinRoom(event)}>
                         <input
@@ -94,16 +94,16 @@ export function AdminHome() {
                     </form>
                     {
                         !!user && (
-                            <div id='logout-button'>
+                            <LogoutButton id='logout-button'>
                                 <span>
                                     Deseja trocar de conta? <button onClick={signOutWithGoogle}>Clique aqui</button>
                                 </span>
-                            </div>
+                            </LogoutButton>
                         )
                     }
-                </section>
+                </ContentBox>
             </main>
             <Toaster position='top-center' />
-        </div>
+        </HomeContainer>
     )
 }

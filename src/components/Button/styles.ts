@@ -1,4 +1,6 @@
-.button-custom {
+import styled from 'styled-components'
+
+export const ButtonContainer = styled.button`
     background-color: #835afd;
     color: #fff;
     height: 3rem;
@@ -26,4 +28,4 @@
         opacity: 0.6;
         cursor: not-allowed;
     }
-}
+`

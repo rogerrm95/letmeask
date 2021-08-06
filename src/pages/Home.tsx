@@ -14,15 +14,15 @@ import GoogleIcon from '../assets/google-icon.svg'
 // Components //
 import { Button } from '../components/Button'
 import { IlustrationAside } from './../components/IlustrationAside'
-
-import '../styles/home.scss' // CSS //
 import { HomeHeader } from '../components/HomeHeader'
+
+import { HomeContainer, ContentBox, GoogleButton, CustomDivider, LogoutButton } from '../styles/home' // CSS //
 
 export function Home() {
     const { push } = useHistory()
+    const { themeMode } = useTheme()
     const { user, signInWithGoogle, signOutWithGoogle, isLoading } = useAuth()
     const [code, setCode] = useState('')
-    const { themes } = useTheme()
 
     async function handleLoginWithGoogle() {
         if (!user) {
@@ -51,7 +51,7 @@ export function Home() {
     }
 
     return (
-        <div id='page-container'>
+        <HomeContainer>
             <IlustrationAside
                 title='Toda pergunta tem uma resposta.'
                 description='Aprenda e compartilhe conhecimento com outras pessoas' />
@@ -59,15 +59,14 @@ export function Home() {
             <main>
                 <HomeHeader redirectTo='/' />
 
-                <section className='content-container'>
-                    <img src={themes === 'light' ? LetMeAskImage : LetMeAskDarkImage} alt="Logo LetMeAsk" onClick={() => push('/')} />
+                <ContentBox>
+                    <img src={themeMode === 'light' ? LetMeAskImage : LetMeAskDarkImage} alt="Logo LetMeAsk" onClick={() => push('/')} />
                     {
                         !user ?
                             (
                                 <>
-                                    <button
+                                    <GoogleButton
                                         disabled={isLoading ? true : false}
-                                        className='google-button'
                                         onClick={handleLoginWithGoogle}>
                                         {
                                             isLoading ?
@@ -81,9 +80,9 @@ export function Home() {
                                                     </>
                                                 )
                                         }
-                                    </button>
+                                    </GoogleButton>
 
-                                    <span className='custom-divider'>Ou entre em uma sala</span>
+                                    <CustomDivider className='custom-divider'>Ou entre em uma sala</CustomDivider>
                                 </>
                             )
                             :
@@ -107,18 +106,20 @@ export function Home() {
                             Entrar
                         </Button>
                     </form>
+
                     {
                         !!user && (
-                            <div id='logout-button'>
+                            <LogoutButton id='logout-button'>
                                 <span>
                                     Deseja trocar de conta? <button onClick={signOutWithGoogle}>Clique aqui</button>
                                 </span>
-                            </div>
+                            </LogoutButton>
                         )
                     }
-                </section>
+                </ContentBox>
             </main>
+            
             <Toaster position='top-center' />
-        </div>
+        </HomeContainer>
     )
 }

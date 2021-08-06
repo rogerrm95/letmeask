@@ -5,7 +5,7 @@ import { Clipboard } from '../Clipboard' // Component //
 import LetMeAskImage from '../../assets/logo.svg'
 import LetMeAskImageDark from '../../assets/logo-dark.svg'
 
-import './styles.scss' // CSS //
+import {HeaderContainer} from './styles' // CSS //
 
 type HeaderProps = {
     admin: boolean,
@@ -19,15 +19,15 @@ type CodeParams = {
 export function Header({ admin, closeRoom }: HeaderProps) {
 
     const { id } = useParams<CodeParams>()
-    const { themes } = useTheme()
+    const { themeMode } = useTheme()
 
     const roomCode = id
 
     return (
-        <header className='page-header'>
+        <HeaderContainer>
             <div className="content">
                 <Link to='/'>
-                    <img src={themes === 'light' ? LetMeAskImage : LetMeAskImageDark} alt="Logo LetMeAsk" />
+                    <img src={themeMode === 'light' ? LetMeAskImage : LetMeAskImageDark} alt="Logo LetMeAsk" />
                 </Link>
 
                 <div>
@@ -38,6 +38,6 @@ export function Header({ admin, closeRoom }: HeaderProps) {
                     }
                 </div>
             </div>
-        </header>
+        </HeaderContainer>
     )
 }

@@ -1,11 +1,8 @@
 import toast, { Toaster } from 'react-hot-toast'
 import ReactModal from 'react-modal'
 import { database } from '../../services/firebase'
-import { useTheme } from '../../hooks/useTheme'
-
 import { FiTrash } from 'react-icons/fi' // Icon //
-
-import './styles.scss' // SCSS //
+import { ModalContainer, ButtonGroup } from './styles' // CSS //
 
 type ModalProps = {
     isModalOpen: boolean,
@@ -15,7 +12,6 @@ type ModalProps = {
 }
 
 export function ModalDeleteAnwser({ isModalOpen, setIsModalOpen, questionId, roomId }: ModalProps) {
-    const { themes } = useTheme()
 
     async function handleRemoveToQuestion() {
         try {
@@ -34,31 +30,31 @@ export function ModalDeleteAnwser({ isModalOpen, setIsModalOpen, questionId, roo
 
     return (
         <ReactModal isOpen={isModalOpen}
-            className={`Modal ${themes}`}
-            overlayClassName='Overlay'
-        >
+            className={`Modal`}
+            overlayClassName='Overlay'>
+            <ModalContainer>
+                <FiTrash size='64' color='#E73F5D' />
 
-            <FiTrash size='64' color='#E73F5D' />
+                <h1>Excluir pergunta</h1>
 
-            <h1>Excluir pergunta</h1>
+                <span>Tem certeza que você deseja excluir esta pergunta?</span>
 
-            <span>Tem certeza que você deseja excluir esta pergunta?</span>
+                <ButtonGroup className='modal-button-group'>
+                    <button
+                        type='button'
+                        id='button-cancel'
+                        onClick={handleCloseModal}>
+                        Cancelar
+                    </button>
+                    <button
+                        type='button'
+                        id='button-delete'
+                        onClick={handleRemoveToQuestion}>
+                        Excluir
+                    </button>
+                </ButtonGroup>
+            </ModalContainer>
 
-            <div className='modal-button-group'>
-                <button
-                    type='button'
-                    id='button-cancel'
-                    onClick={handleCloseModal}>
-                    Cancelar
-                </button>
-
-                <button
-                    type='button'
-                    id='button-delete'
-                    onClick={handleRemoveToQuestion}>
-                    Excluir
-                </button>
-            </div>
             <Toaster position='top-center' />
         </ReactModal>
     )

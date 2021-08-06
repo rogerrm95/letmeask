@@ -1,7 +1,10 @@
-import { ReactElement, createContext, useEffect, useState} from 'react'
+import { ReactElement, createContext, useEffect, useState } from 'react'
+import LightMode from '../styles/themes/light'
+import DarkMode from '../styles/themes/dark'
 
 type ThemeContextData = {
-    themes: string,
+    themeMode: string,
+    theme: {},
     toggleThemes: () => void
 }
 
@@ -13,41 +16,44 @@ export const ThemeContext = createContext<ThemeContextData>({} as ThemeContextDa
 
 export function ThemeContextProvider({ children }: ThemeContextProviderProps) {
 
-    const [themes, setThemes] = useState<string>(() => {
+    const [theme, setTheme] = useState(LightMode)
+    const [themeMode, setThemeMode] = useState<string>(() => {
+        const themeInLocalStorage = localStorage.getItem('@letmeask-themes')
 
-        const themeSaved = localStorage.getItem('themes')
-    
-        if (themeSaved) {
-          return themeSaved;
+        if (themeInLocalStorage) {
+            return themeInLocalStorage;
         }
-    
+
         return 'light'
-      })
+    })
 
     useEffect(() => {
-        const themeSaved = localStorage.getItem('themes')
+        const themeInLocalStorage = localStorage.getItem('@letmeask-themes')
 
-        if (themeSaved) {
-            setThemes(themes)
-
+        if (themeInLocalStorage) {
+            setThemeMode(themeMode)
+            setTheme(themeInLocalStorage === 'light' ? LightMode : DarkMode)
         } else {
-            localStorage.setItem('themes', themes)
+            localStorage.setItem('@letmeask-themes', themeMode)
+            setTheme(themeInLocalStorage === 'light' ? LightMode : DarkMode)
         }
-    }, [themes])
+    }, [themeMode])
 
     function toggleThemes() {
-        if (themes === 'light') {
-            setThemes('dark')
-            localStorage.setItem('themes', 'dark')
+        if (themeMode === 'light') {
+            setThemeMode('dark')
+            setTheme(DarkMode)
+            localStorage.setItem('@letmeask-themes', 'dark')
         }
         else {
-            setThemes('light')
-            localStorage.setItem('themes', 'light')
+            setThemeMode('light')
+            setTheme(LightMode)
+            localStorage.setItem('@letmeask-themes', 'light')
         }
     }
 
     return (
-        <ThemeContext.Provider value={{ themes, toggleThemes }}>
+        <ThemeContext.Provider value={{ theme, themeMode, toggleThemes }}>
             {children}
         </ThemeContext.Provider>
     )

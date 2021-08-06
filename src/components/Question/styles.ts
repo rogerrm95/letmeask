@@ -1,5 +1,23 @@
-.question-item {
-    background: var(--acent);
+import styled from 'styled-components'
+
+interface QuestionProps {
+    isHighLighted: boolean,
+    isAnswered: boolean
+}
+
+export const QuestionContainer = styled.li<QuestionProps>`
+    background: ${props => props.isAnswered ?
+        props.theme.colors.disable :
+        (props.isHighLighted ?
+            props.theme.colors.backgroundSelected :
+            props.theme.colors.acent)
+    };
+
+    // Se estiver selecionada porém não respondida, então aplicará uma borda roxa //
+    ${({ isAnswered, isHighLighted, theme }) => (!isAnswered && isHighLighted) && `
+        border: 2px solid ${theme.colors.primary};
+    `}
+
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
     height: 9.75rem;
     width: 100%;
@@ -18,8 +36,7 @@
         -webkit-box-orient: vertical;
         line-height: 1.5rem;
         text-align: justify;
-
-        color: var(--text);
+        color: ${props => props.theme.colors.secundaryText};
     }
 
     footer {
@@ -32,6 +49,10 @@
         > div {
             display: flex;
             gap: 1rem;
+
+            span {
+                color: ${props => props.theme.colors.secundaryText};
+            }
         }
 
         button {
@@ -44,7 +65,7 @@
             &.like-button {
                 display: flex;
                 align-items: flex-end;
-                color: var(--icon);
+                color: ${props => props.theme.colors.iconPrimary};
                 gap: 0.5rem;
 
                 &.liked {
@@ -62,9 +83,35 @@
             }
         }
     }
-}
 
-.user-info {
+    &:not(:first-child) {
+    margin-top: 0.5rem;
+    }
+
+    &:last-child {
+    margin-bottom: 2rem;
+    }
+
+    // Media Queries //
+    @media (max-width: 1000px) {
+        & {
+        max-width: 93.75%;
+        }
+    }
+
+    @media (max-width: 800px) {
+        & {
+        max-width: 93%;
+        }
+    }
+
+    @media (max-width: 600px) {
+        & {
+        max-width: 100%;
+        }
+    }
+`
+export const UserInfo = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -82,74 +129,15 @@
     span {
         font-family: Roboto, sans-serif;
         font-size: 0.75rem;
-        color: var(--text);
-    }
-}
-
-.question-item:not(:first-child) {
-    margin-top: 0.5rem;
-}
-
-.question-item:last-child {
-    margin-bottom: 2rem;
-}
-
-.highlighted {
-    border: 2px #835afd solid;
-    background-color: var(--background-selected);
-
-    p, span {
-        color: var(--fontSelected);
-    }
-}
-
-.answered {
-    background-color: var(--disabled);
-
-    p,
-    span {
-        color: var(--text);
-        opacity: 0.4;
+        color: ${props => props.theme.colors.primaryText};
     }
 
-    img {
-        opacity: 0.4;
-    }
-}
-
-// Media Queries //
-@media (max-width: 1000px) {
-    .question-item {
-        max-width: 93.75%;
-    }
-
-    .user-info {
+    // Media Queries //
+    @media (max-width: 1000px) {
+        & {
         span {
             font-size: 1rem;
+            }
         }
     }
-}
-
-@media (max-width: 800px) {
-    .question-item {
-        max-width: 93%;
-    }
-
-    .user-info {
-        span {
-            font-size: 1rem;
-        }
-    }
-}
-
-@media (max-width: 600px) {
-    .question-item {
-        max-width: 100%;
-    }
-
-    .user-info {
-        span {
-            font-size: 1rem;
-        }
-    }
-}
+`

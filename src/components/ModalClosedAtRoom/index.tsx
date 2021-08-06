@@ -1,15 +1,9 @@
 import toast, { Toaster } from 'react-hot-toast'
 import ReactModal from 'react-modal'
 import { database } from '../../services/firebase'
-// Hooks //
-import { useHistory } from 'react-router-dom'
-import { useTheme } from '../../hooks/useTheme'
-
+import { useHistory } from 'react-router-dom' // Hooks //
 import { FiXCircle } from 'react-icons/fi' // Icon //
-
- // CSS //
-import './styles.scss'
-import '../../styles/themes.scss'
+import { ModalContainer, ButtonGroup } from './styles' // CSS //
 
 type ModalProps = {
     isModalOpen: boolean,
@@ -19,7 +13,6 @@ type ModalProps = {
 
 export function ModalClosedAtRoom({ isModalOpen, setIsModalOpen, roomId }: ModalProps) {
     const { push } = useHistory()
-    const { themes } = useTheme()
 
     async function handleCloseRoom() {
         try {
@@ -42,31 +35,32 @@ export function ModalClosedAtRoom({ isModalOpen, setIsModalOpen, roomId }: Modal
     return (
         <ReactModal
             isOpen={isModalOpen}
-            className={`Modal ${themes}`}
+            className="Modal"
             overlayClassName='Overlay'>
+            <ModalContainer>
+                <FiXCircle size='64' color='#E73F5D' />
 
-            <FiXCircle size='64' color='#E73F5D' />
+                <h1>Encerrar Sala</h1>
 
-            <h1>Encerrar Sala</h1>
+                <span>Tem certeza que você deseja encerrar esta sala?</span>
 
-            <span>Tem certeza que você deseja encerrar esta sala?</span>
-
-            <div className='modal-button-group'>
-                <button
-                    type='button'
-                    id='button-cancel'
-                    onClick={handleCloseModal}>
-                    Cancelar
-                </button>
-
-                <button
-                    type='button'
-                    id='button-delete'
-                    onClick={handleCloseRoom}>
-                    Excluir
-                </button>
-            </div>
-            <Toaster position='top-center' />
+                <ButtonGroup>
+                    <button
+                        type='button'
+                        id='button-cancel'
+                        onClick={handleCloseModal}>
+                        Cancelar
+                    </button>
+                    <button
+                        type='button'
+                        id='button-delete'
+                        onClick={handleCloseRoom}>
+                        Excluir
+                    </button>
+                </ButtonGroup>
+                
+                <Toaster position='top-center' />
+            </ModalContainer>
         </ReactModal>
     )
 }

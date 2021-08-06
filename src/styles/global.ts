@@ -37,4 +37,37 @@ body, input, button, textarea {
     font: 400 1rem Roboto, sans-serif;
 }
 
+.Modal {
+    max-width: 800px;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    right: 25%;
+    bottom: 25%;
+
+    // Media Queries //
+    @media (max-width: 600px) {
+        & {
+            top: 15%;
+            left: 10%;
+            right: 10%;
+            bottom: 15%;
+            gap: 1rem;
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    }
+}
+
+.Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #05020680;
+    z-index: 2;
+}
 `

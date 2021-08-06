@@ -1,9 +1,8 @@
 import toast, { Toaster } from 'react-hot-toast'
 import ReactModal from 'react-modal'
 import { database } from '../../services/firebase'
-
 import { FiTrash } from 'react-icons/fi' // Icon //
-import { ModalContainer } from './styles'
+import { ModalContainer, ButtonGroup } from './styles' // CSS //
 
 type ModalProps = {
     isModalOpen: boolean,
@@ -40,7 +39,7 @@ export function ModalDeleteAnwser({ isModalOpen, setIsModalOpen, questionId, roo
 
                 <span>Tem certeza que você deseja excluir esta pergunta?</span>
 
-                <div className='modal-button-group'>
+                <ButtonGroup className='modal-button-group'>
                     <button
                         type='button'
                         id='button-cancel'
@@ -53,8 +52,9 @@ export function ModalDeleteAnwser({ isModalOpen, setIsModalOpen, questionId, roo
                         onClick={handleRemoveToQuestion}>
                         Excluir
                     </button>
-                </div>
+                </ButtonGroup>
             </ModalContainer>
+
             <Toaster position='top-center' />
         </ReactModal>
     )

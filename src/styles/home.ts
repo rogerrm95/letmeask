@@ -21,6 +21,31 @@ export const HomeContainer = styled.div`
         display: flex;
         flex-direction: column;
     }
+
+    @media (min-width: 1440px) {
+    & {
+        max-width: 1440px;
+        margin: auto;
+    }
+    }
+
+    @media (max-width: 700px) {
+    & {
+        aside {
+            display: none;
+            }
+
+        main {
+            flex: 1;
+            }
+        }
+    }
+
+    @media (min-width: 1440px) {
+        & {
+        max-width: none;
+        }
+    }
 `
 
 export const ContentBox = styled.section`
@@ -50,12 +75,13 @@ export const ContentBox = styled.section`
             height: 3rem;
             border-radius: 0.5rem;
             padding: 0 1rem;
+            color: ${props => props.theme.colors.primaryText};
             background: ${props => props.theme.colors.acent};
             border: 1px solid ${props => props.theme.colors.primaryBorder};
             margin-bottom: 1rem;
 
             &::placeholder {
-                color: #a8a8b3dc;
+                color: ${props => props.theme.colors.inputBorder};
             }
 
             &:focus{
@@ -125,6 +151,18 @@ export const GoogleButton = styled.button`
     &:hover {
         filter: brightness(0.9);
     }
+
+    @media (max-width: 850px) {
+    & {
+        font-size: 0.75rem;
+        } 
+    }
+
+    @media (max-width: 700px) {
+    & {
+            font-size: 1rem;
+    }
+}
 `
 
 export const CustomDivider = styled.span`
@@ -167,6 +205,18 @@ export const LogoutButton = styled.div`
             color: #e559f9;
             text-decoration: underline;
             font-size: 0.75rem;
+        }
+    }
+
+    @media (max-width: 700px) {
+        & {
+            span {
+                font-size: 1rem;
+
+            button {
+                font-size: inherit;
+            }
+            }
         }
     }
 `

@@ -52,8 +52,6 @@ export function ThemeContextProvider({ children }: ThemeContextProviderProps) {
         }
     }
 
-    console.log(theme, themeMode)
-
     return (
         <ThemeContext.Provider value={{ theme, themeMode, toggleThemes }}>
             {children}

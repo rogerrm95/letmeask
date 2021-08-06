@@ -1,13 +1,9 @@
 import toast, { Toaster } from 'react-hot-toast'
 import ReactModal from 'react-modal'
 import { database } from '../../services/firebase'
-// Hooks //
-import { useHistory } from 'react-router-dom'
-
+import { useHistory } from 'react-router-dom' // Hooks //
 import { FiXCircle } from 'react-icons/fi' // Icon //
-// CSS //
-import { ModalContainer } from './styles'
-import './styles.scss'
+import { ModalContainer, ButtonGroup } from './styles' // CSS //
 
 type ModalProps = {
     isModalOpen: boolean,
@@ -48,7 +44,7 @@ export function ModalClosedAtRoom({ isModalOpen, setIsModalOpen, roomId }: Modal
 
                 <span>Tem certeza que você deseja encerrar esta sala?</span>
 
-                <div className='modal-button-group'>
+                <ButtonGroup>
                     <button
                         type='button'
                         id='button-cancel'
@@ -61,7 +57,8 @@ export function ModalClosedAtRoom({ isModalOpen, setIsModalOpen, roomId }: Modal
                         onClick={handleCloseRoom}>
                         Excluir
                     </button>
-                </div>
+                </ButtonGroup>
+                
                 <Toaster position='top-center' />
             </ModalContainer>
         </ReactModal>

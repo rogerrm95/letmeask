@@ -5,18 +5,17 @@ import toast, { Toaster } from "react-hot-toast";
 // hooks //
 import { useAuth } from "../hooks/useAuth";
 import { useRoom } from "../hooks/useRoom";
+import { useTheme } from "../hooks/useTheme";
 // Components //
 import { Button } from "../components/Button";
 import { Header } from "../components/Header";
 import { NoQuestions } from "./../components/NoQuestionsMessage";
 import { Question } from "./../components/Question";
 import { Spinner } from "../components/Spinner";
+import { SwitchButton } from "../components/SwitchButton";
 
 import { FiSun, FiMoon, FiLogOut } from 'react-icons/fi' // Icons //
-
-import '../styles/room.scss' // CSS //
-import { SwitchButton } from "../components/SwitchButton";
-import { useTheme } from "../hooks/useTheme";
+import { RoomContainer, Header as HeaderRoom, FormActions, Footer, ActionsButtons} from '../styles/room' // CSS //
 
 type RoomCodeProps = {
     id: string
@@ -74,16 +73,16 @@ export function Room() {
     if (isLoading) return <Spinner color='#FF59F8' size='72' speedMultiplier={0.5} />
 
     return (
-        <div className='page-admin-room'>
+        <RoomContainer>
             <Header admin={false} />
 
             <main>
-                <div className='admin-room-head'>
+                <HeaderRoom>
                     <h2>{title}</h2>
                     {questions.length > 0 && <span>{questions.length} - Pergunta(s)</span>}
-                </div>
+                </HeaderRoom>
 
-                <form action="submit" className="admin-room-content">
+                <FormActions action="submit">
                     <textarea
                         name="question"
                         id="question"
@@ -92,7 +91,7 @@ export function Room() {
                         value={newQuestion}
                         onChange={(event) => setNewQuestion(event.target.value)} />
 
-                    <footer>
+                    <Footer>
                         {
                             user ?
                                 (
@@ -111,8 +110,8 @@ export function Room() {
                         <Button type='submit' disabled={!user} onClick={event => handleSendQuestion(event)}>
                             Enviar pergunta
                         </Button>
-                    </footer>
-                </form>
+                    </Footer>
+                </FormActions>
 
                 {
                     questions.length > 0 ?
@@ -149,7 +148,7 @@ export function Room() {
                 }
             </main>
 
-            <footer className='footer-container'>
+            <ActionsButtons>
 
                 <SwitchButton handleOnClick={toggleThemes}>
                     {
@@ -166,9 +165,9 @@ export function Room() {
 
                     )
                 }
-            </footer>
+            </ActionsButtons>
 
             <Toaster position='top-center' />
-        </div>
+        </RoomContainer>
     )
 }

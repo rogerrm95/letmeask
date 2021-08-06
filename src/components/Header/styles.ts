@@ -26,7 +26,7 @@ export const HeaderContainer = styled.header`
             button {
                 height: 3rem;
                 border-radius: 0.5rem;
-                border: 1px solid ${props => props.theme.colors.primaryBorder};
+                border: 1px solid ${props => props.theme.colors.primary};
                 cursor: pointer;
                 overflow: hidden;
 
@@ -36,15 +36,14 @@ export const HeaderContainer = styled.header`
             }
 
             .close-room-button {
-                background-color: ${props => props.theme.colors.background};
-                color: ${props => props.theme.colors.primary};
+                background-color: ${props => props.theme.colors.primary};
+                color: #FFF;
                 padding: 0 12px;
 
-                transition: background-color 0.5s, color 0.4s;
+                transition: filter 0.5s, color 0.4s;
 
                 &:hover {
-                    background-color: ${props => props.theme.colors.primary};
-                    color: #fff;
+                    filter: brightness(0.8)
                 }
             }
         }

@@ -12,6 +12,12 @@ export const QuestionContainer = styled.li<QuestionProps>`
             props.theme.colors.backgroundSelected :
             props.theme.colors.acent)
     };
+
+    // Se estiver selecionada porém não respondida, então aplicará uma borda roxa //
+    ${({ isAnswered, isHighLighted, theme }) => (!isAnswered && isHighLighted) && `
+        border: 2px solid ${theme.colors.primary};
+    `}
+
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
     height: 9.75rem;
     width: 100%;
@@ -30,7 +36,7 @@ export const QuestionContainer = styled.li<QuestionProps>`
         -webkit-box-orient: vertical;
         line-height: 1.5rem;
         text-align: justify;
-        color: ${props => props.theme.colors.primaryText};
+        color: ${props => props.theme.colors.secundaryText};
     }
 
     footer {
@@ -43,6 +49,10 @@ export const QuestionContainer = styled.li<QuestionProps>`
         > div {
             display: flex;
             gap: 1rem;
+
+            span {
+                color: ${props => props.theme.colors.secundaryText};
+            }
         }
 
         button {

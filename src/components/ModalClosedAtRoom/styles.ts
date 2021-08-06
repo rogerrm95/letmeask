@@ -27,37 +27,57 @@ export const ModalContainer = styled.div`
         margin-bottom: 2.5rem;
     }
 
-    .modal-button-group {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        max-width: 20rem;
+    // Media Queries //
+    @media (max-width: 600px) {
+    & {
+        h1 {
+            font-size: 2rem;
+        }
+    }
+    }
+`
+
+export const ButtonGroup = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    max-width: 20rem;
+    width: 100%;
+
+    button {
         width: 100%;
 
-        button {
-            width: 100%;
+        border: none;
+        cursor: pointer;
+        height: 3rem;
+        border-radius: 0.5rem;
 
-            border: none;
-            cursor: pointer;
-            height: 3rem;
-            border-radius: 0.5rem;
+        transition: filter 0.3s;
 
-            transition: filter 0.3s;
+        &:hover {
+            filter: brightness(0.9);
+        }
+    }
 
-            &:hover {
-                filter: brightness(0.9);
+    #button-cancel {
+        color: #737380;
+        background-color: #dbdcdd;
+    }
+
+    #button-delete {
+        color: #fff;
+        background-color: #e73f5d;
+    }
+
+    // Media Queries //
+    @media (max-width: 600px) {
+        & {
+            flex-direction: column;
+
+            button:first-child {
+                margin-bottom: 1rem;
             }
-        }
-
-        #button-cancel {
-            color: #737380;
-            background-color: #dbdcdd;
-        }
-
-        #button-delete {
-            color: #fff;
-            background-color: #e73f5d;
         }
     }
 `
